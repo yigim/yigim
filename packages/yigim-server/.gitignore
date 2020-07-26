@@ -1,0 +1,4 @@
+/dist
+.serverless
+.dynamodb
+/node_modules

@@ -1,0 +1,4 @@
+**/gulpfile.js
+**/dist/**/*.js
+**/lib/**/*.js
+**/build/**/*.js
