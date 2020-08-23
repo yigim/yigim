@@ -5,7 +5,7 @@ class Home extends Component{
     render(){
         return(
             <div className="Desktop13">
-            <h1>2020학년도 너 나 알아? 친구 영역</h1>
+            <h1>2020학년도 너 나 알까? 친구 영역</h1>
             <h2>친구 적성평가</h2>
             <p className="Problemtype">홀수형</p>
             <NavLink to="/userinfo">
