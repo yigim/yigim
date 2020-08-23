@@ -8,7 +8,7 @@ class ProbMaking extends Component{
         q: '',
         mention: '수정하기',
         QnAExSets: [
-            {id: 1, question: this.props.match.params.id+'의 주량은?', answer: ['1병' , '2병', '3병', '반 병']},
+            {id: 1, question: this.props.match.params.id+'의 주량은?', answer: ['1병' , '2병', '3병', '반 병병병병병병']},
             {id: 2, question: this.props.match.params.id+'의 입대 날짜는?', answer: ['17년 2월', '18년 2월', '19년 2월', '미필']},
             {id: 3, question: this.props.match.params.id+'의 나이는?', answer: ['10살', '20살', '22살', '30살']},
             {id: 4, question: this.props.match.params.id+'의 가족관계는?', answer: ['외동', '누나', '여동생', '누나, 여동생']},
