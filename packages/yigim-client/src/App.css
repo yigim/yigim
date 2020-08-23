@@ -1,0 +1,68 @@
+.App {
+  text-align: center;
+}
+
+.background {
+  background-color: #F1EBE6;
+  color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  min-height: 150%;
+}
+.content_type_1 {
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 60px;
+  letter-spacing: 0.35em;
+}
+.content_type_2 {
+  font-family: SinGraphic;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 96px;
+  line-height: 120px;
+  color: black;
+}
+.rectangle_1{
+  position: absolute;
+  width: 143px;
+  height: 66px;
+  left: 451px;
+  border: 4px solid #333333;
+  text-align: center;
+}
+.box_font{
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 60px;
+  color: #000000;
+}
+.rectangle_2{
+  position: absolute;
+  width: 392px;
+  height: 66px;
+  left: 597px;
+  border: 4px solid #333333;
+  font-size: 48px;
+  background-color: #F1EBE6;
+}
+
+.button{
+  text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}

@@ -1,0 +1,244 @@
+@font-face {
+    font-family:"NanumMyeongjo";
+    src:url("../fonts/NanumMyeongjo.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+  }
+  @font-face {
+    font-family:"HY태고딕";
+    src:url("../fonts/HY태고딕.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+  }
+  @font-face {
+    font-family:"SinGraphic";
+    src:url("../fonts/SinGraphic.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+  }
+  @font-face {
+    font-family:"Gothic A1";
+    src:url("../fonts/GothicA1-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+  }
+  @font-face {
+    font-family:"Nanum Brush Script";
+    src:url("../fonts/NanumBrushScript-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: normal;
+  }
+  
+  .Desktop {    
+      background: #F1EBE6;
+        height: 1024px;
+        width: 1439px;
+        margin: 0px;
+  }
+
+  .Donetext {
+    position: absolute;
+    width: 1440px;
+    height: 252px;
+    top: 81px;
+    
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;
+    
+    color: #000000;
+  }
+  
+  .Mylink {
+    position: absolute;
+    width: 1328px;
+    left: 56px;
+    height: 129px;
+    top: 235px;
+    
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+    text-align: center;
+    
+    color: #000000;   
+    border-bottom: 5px solid black; 
+  }
+
+  .Probdeliver {
+    position: absolute;
+    width: 309px;
+    height: 86px;
+    left: 87px;
+    top: 418px;
+    
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+    
+    color: #000000;
+  }
+  
+  .Facebook {
+    position: absolute;
+    width: 295px;
+    height: 103px;
+    left: 61px;
+    top: 532px;
+    
+    background: #D9D9D9;
+
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+
+    color: #000000;
+  }
+
+  .Kakaotalk {
+    position: absolute;
+    width: 295px;
+    height: 103px;
+    left: 396px;
+    top: 532px;
+    
+    background: #D9D9D9;
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+
+    color: #000000;
+  }
+  
+  .Instagram {
+    position: absolute;
+    width: 295px;
+    height: 103px;
+    left: 61px;
+    top: 649px;
+    
+    background: #D9D9D9;
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+
+    color: #000000;
+  }
+
+  .URLcopy {
+    position: absolute;
+    width: 295px;
+    height: 103px;
+    left: 396px;
+    top: 649px;
+    
+    background: #D9D9D9;
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+
+    color: #000000;
+  }
+
+  .Border {
+    position: absolute;
+    border-left: 5px solid black;
+    top: 364px;
+    left: 720px;
+    height: 601px;
+  }
+
+  .Scoretitle {
+    position: absolute;
+    width: 574px;
+    height: 62px;
+    left: 815px;
+    top: 418px;
+    
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 48px;
+    line-height: 60px;
+    
+    color: #000000;
+    
+  }
+  
+  .Scoretable {
+    position: absolute;
+    left: 817px;
+    top: 500px;
+    width: 500px;
+    border-collapse:collapse;
+    border-spacing:0;
+    border: 3px solid black;
+  }
+
+  .Scoretable th {
+    border: 3px solid black;
+
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+    height:50px;
+
+    font-family: Gothic A1;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 36px;
+    line-height: 45px;
+
+    color: #000000;
+
+  }
+
+  .Scoretable td {
+    border: 3px solid black;
+
+      overflow:hidden;
+      padding:10px 5px;
+      word-break:normal;
+      height:50px;
+      font-family: Gothic A1;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 36px;
+    line-height: 45px;
+    text-align: center;
+    color: #000000;
+
+}
+
+
+  .Scorecheck {
+    position: absolute;
+    width: 566px;
+    height: 60px;
+    left: 817px;
+    top: 950px;
+    
+    font-family: NanumMyeongjo;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 30px;
+    text-align: right;
+    
+    color: #000000;
+  }

@@ -1,0 +1,15 @@
+.returnbutton {
+  position: absolute;
+  width: 1500px;
+  height: 61px;
+  left: 300px;
+  top: 500px;
+  /* Gray 1 */
+  text-align: center;
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 45px;
+  border: 4px solid #333333;
+}
