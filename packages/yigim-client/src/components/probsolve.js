@@ -96,7 +96,7 @@ class ProbSolve extends Component{
                         result: 'default'
                     })
                 }else{
-                    this.props.history.push('/probsolvedone');
+                    this.props.history.push('/prob-solve-done');
                 }}}
                 >
                 {hidden}

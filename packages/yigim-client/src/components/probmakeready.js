@@ -6,7 +6,7 @@ class ProbMakeReady extends Component{
         return(
             <form onClick={(e)=>{
                 e.preventDefault();
-                this.props.history.push('/probmaking/'+this.props.match.params.id+'/0');
+                this.props.history.push('/prob-making/'+this.props.match.params.id+'/0');
                 }}>
                 <div className="Desktop14">
                     <h1 className="Title">&lt;출제자 주의사항 및 공지사항&gt;</h1>

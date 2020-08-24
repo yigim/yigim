@@ -53,12 +53,13 @@ class ProbMaking extends Component{
             ? item
             : ({...item, answer: answers_each})
         )*/
-        while (j<data.answer.length){
-            answers_each.push(
-                data.answer[j]
-            )
-            j=j+1;
-        }
+        // while (j<data.answer.length){
+        //     answers_each.push(
+        //         data.answer[j]
+        //     )
+        //     j=j+1;
+        // }
+        answers_each = data.answer.map(string => string)
         var article=[];
         var j=0;
         if (this.state.mode === 'basic'){
@@ -176,7 +177,7 @@ class ProbMaking extends Component{
                     if (this.probNumber===10){
                         //축적된 데이터(UserQnALists) 업로드하도록
                         this.props.history.push(
-                            '/probmakingdone',
+                            '/prob-making-done',
                             {
                                 data: this.state.UserQnASets
                             }

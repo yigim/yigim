@@ -15,7 +15,7 @@ class UserInfo extends Component{
         <article>
           <form onSubmit={(e)=>{
               e.preventDefault();
-              this.props.history.push('/probmakeready/'+this.state.name+'/0');
+              this.props.history.push('/prob-make-ready/'+this.state.name+'/0');
               }}>
             <div className="Desktop10">
             <h1>2020학년도 너 나 알아? 친구 영역</h1>

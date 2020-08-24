@@ -3,7 +3,7 @@ import "./probsolveready.css";
 class ProbSolveReady extends Component{
     render(){
         return(
-        <form   onClick={()=>this.props.history.push('/probsolving')}>
+        <form   onClick={()=>this.props.history.push('/prob-solving')}>
             <div className="Desktop14">
         <h1 className="Title">&lt;응시자 주의사항 및 공지사항&gt;</h1>
         <div className="Border_"></div>
