@@ -263,10 +263,19 @@
       font-family: NanumMyeongjo;
       font-size: 36px;
   }
-  .pseudobutton{
-    background: none;
-    width:52px;
+  .NextButton{
+    position: absolute;
+    left: 1000px;
+    top: 900px;
+    width:300px;
     height:52px;
-    border: none;
-    font-size:36px
+    font-size:36px;
+    background: none;
+  }
+  .grade{
+    position: absolute;
+    left: 1000px;
+    top: 500px;
+    font-size: 36px;
+    height: 52px;
   }
