@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
-import './probsolve.css';
+import './probsolving.css';
 
-class ProbSolve extends Component{
+class ProbSolving extends Component{
     probNumber = 1;
     state = {
         score_total: 0,
@@ -109,4 +109,4 @@ class ProbSolve extends Component{
         );
     }
 }
-export default ProbSolve;
+export default ProbSolving;

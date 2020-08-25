@@ -3,9 +3,9 @@ import UserInfo from './components/userinfo';
 import ProbMaking from './components/probmaking';
 import ProbMakeReady from './components/probmakeready';
 import ProbMakingDone from './components/probmakingdone';
-import ProbSolveReady from './components/probsolveready';
+import ProbReady from './components/probready';
 import Home from './components/Home';
-import ProbSolve from './components/probsolve';
+import ProbSolving from './components/probsolving';
 import ProbSolveDone from './components/probsolvedone';
 import PageError from './components/pageerror';
 import ProbLinkInput from './components/problinkinput';
@@ -30,12 +30,12 @@ class App extends Component {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/user-info" component={UserInfo} />
-          <Route exact path="/prob-solve-ready" component={ProbSolveReady}></Route>
+          <Route exact path="/prob-solve-ready" component={ProbReady}></Route>
           <Route exact path="/prob-making/:id/0" component={ProbMaking}></Route>
-          <Route exact path="/prob-make-ready/:id/0" component={ProbMakeReady}></Route>
+          <Route exact path="/prob-make-ready/:id/0" component={ProbReady}></Route>
           <Route exact path="/prob-making-done/" component={ProbMakingDone}></Route>
           <Route exact path="/prob-link-input/" component={ProbLinkInput}></Route>
-          <Route exact path="/prob-solve/" component={ProbSolve}></Route>
+          <Route exact path="/prob-solving/" component={ProbSolving}></Route>
           <Route exact path="/prob-solve-done/"
           render={(props)=>(
             <ProbSolveDone {...props} isAuthed={true}/>
