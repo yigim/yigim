@@ -270,3 +270,11 @@
   border: none;
   font-size:36px
 }
+.Anotherquestion{
+  position: absolute;
+  top: 500px;
+  left: 800px;
+  font-size: 35px;
+  height: 70px;
+  width: 300px;
+}
