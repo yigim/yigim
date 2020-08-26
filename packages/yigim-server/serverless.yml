@@ -2,17 +2,13 @@ service:
   name: yigim-server
 
 plugins:
+  - serverless-webpack
   - serverless-offline
   - serverless-dynamodb-local
 
-package:
-  exclude:
-    - ./**
-  include:
-    - ./dist/**
 provider:
   name: aws
-  runtime: nodejs10.x
+  runtime: nodejs12.x
   stage: ${self:custom.stage}
   region: ${self:custom.region}
   environment:
@@ -35,6 +31,10 @@ provider:
 custom:
   region: ap-northeast-2
   stage: ${opt:stage, 'dev'}
+  webpack:
+    keepOutputDirectory: true
+    includeModules: true
+    packager: yarn
   serverless-offline:
     httpPort: 9000
   dynamodb:
@@ -45,6 +45,13 @@ custom:
       migrate: true
 functions:
   #  --- http ---
+  problemCreate:
+    handler: src/http/problemCreate.handler
+    events:
+      - http:
+          method: post
+          cors: true
+          path: problemCreate
 resources:
   Resources:
     UserTable:
@@ -58,3 +65,14 @@ resources:
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
         TableName: 'user'
+    ProblemTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+        TableName: 'problem'
