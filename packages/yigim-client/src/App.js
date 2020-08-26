@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import UserInfo from './components/userinfo';
 import ProbMaking from './components/probmaking';
-import ProbMakeReady from './components/probmakeready';
 import ProbMakingDone from './components/probmakingdone';
 import ProbReady from './components/probready';
 import Home from './components/Home';
