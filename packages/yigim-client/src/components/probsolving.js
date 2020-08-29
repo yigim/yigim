@@ -87,15 +87,18 @@ class ProbSolving extends Component {
   rightanswer = () => {
     this.setState({
       result: 'right',
-      score_total: Number(this.state.score_total) + Number(this.state.userdata[this.probNumber].score),
-      score_user: Number(this.state.score_user) + Number(this.state.userdata[this.probNumber].score),
+      score_total:
+        Number(this.state.score_total) + Number(this.state.userdata[this.probNumber].score),
+      score_user:
+        Number(this.state.score_user) + Number(this.state.userdata[this.probNumber].score),
     });
   };
   //정답이 틀리는 함수
   wronganswer = () => {
     this.setState({
       result: 'wrong',
-      score_total: Number(this.state.score_total) + Number(this.state.userdata[this.probNumber].score),
+      score_total:
+        Number(this.state.score_total) + Number(this.state.userdata[this.probNumber].score),
     });
   };
   render() {
@@ -268,7 +271,9 @@ class ProbSolving extends Component {
       <div>
         <article className="Desktop">
           <div className="Problemheader">
-            <h1 className="Problemtype_">2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?</h1>
+            <h1 className="Problemtype_">
+              2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
+            </h1>
             <h2 className="Problemtitle">{this.state.userdata[0]} 영역</h2>
             <p className="Period">제 1교시</p>
             <p className="Nametag">성명</p>

@@ -37,12 +37,42 @@ class ProbMaking extends Component {
         answer: ['외동', '누나', '여동생', '누나, 여동생'],
         score: 3,
       },
-      { id: 5, question: this.props.match.params.id + '이 좋아하는 숫자는?', answer: ['1', '2', '3', '4'], score: 3 },
-      { id: 6, question: this.props.match.params.id + '이 싫어하는 숫자는??', answer: ['1', '2', '3', '4'], score: 3 },
-      { id: 7, question: this.props.match.params.id + '이 좋아하는 알파벳은?', answer: ['a', 'b', 'c', 'd'], score: 3 },
-      { id: 8, question: this.props.match.params.id + '이 싫어하는 알파벳은?', answer: ['a', 'b', 'c', 'd'], score: 3 },
-      { id: 9, question: this.props.match.params.id + '은 남자인가?', answer: ['O', 'X'], score: 3 },
-      { id: 10, question: this.props.match.params.id + '은 사람인가?', answer: ['O', 'X'], score: 3 },
+      {
+        id: 5,
+        question: this.props.match.params.id + '이 좋아하는 숫자는?',
+        answer: ['1', '2', '3', '4'],
+        score: 3,
+      },
+      {
+        id: 6,
+        question: this.props.match.params.id + '이 싫어하는 숫자는??',
+        answer: ['1', '2', '3', '4'],
+        score: 3,
+      },
+      {
+        id: 7,
+        question: this.props.match.params.id + '이 좋아하는 알파벳은?',
+        answer: ['a', 'b', 'c', 'd'],
+        score: 3,
+      },
+      {
+        id: 8,
+        question: this.props.match.params.id + '이 싫어하는 알파벳은?',
+        answer: ['a', 'b', 'c', 'd'],
+        score: 3,
+      },
+      {
+        id: 9,
+        question: this.props.match.params.id + '은 남자인가?',
+        answer: ['O', 'X'],
+        score: 3,
+      },
+      {
+        id: 10,
+        question: this.props.match.params.id + '은 사람인가?',
+        answer: ['O', 'X'],
+        score: 3,
+      },
     ],
     AdditionalQnASets: [
       {
@@ -63,7 +93,12 @@ class ProbMaking extends Component {
         answer: ['영재고', '과학고', '자사고', '외고'],
         score: 3,
       },
-      { id: 4, question: this.props.match.params.id + '는?', answer: ['첫째', '둘째', '막내', '외동'], score: 3 },
+      {
+        id: 4,
+        question: this.props.match.params.id + '는?',
+        answer: ['첫째', '둘째', '막내', '외동'],
+        score: 3,
+      },
       {
         id: 5,
         question: this.props.match.params.id + '의 연령대는?',
@@ -109,7 +144,9 @@ class ProbMaking extends Component {
   //질문 수정 후 저장하는 함수
   handleChangeQuestion = (i, value) => {
     const array = this.state.QnAExSets;
-    const modifiedArray = array.map((item) => (item.id === i + 1 ? { ...item, question: value } : item));
+    const modifiedArray = array.map((item) =>
+      item.id === i + 1 ? { ...item, question: value } : item,
+    );
     this.setState({
       QnAExSets: modifiedArray,
     });
@@ -117,7 +154,9 @@ class ProbMaking extends Component {
   //답변 수정 후 저장하는 함수
   handleChangeAnswer = (i, value) => {
     const array = this.state.QnAExSets;
-    const modifiedArray = array.map((item) => (item.id === i + 1 ? { ...item, answer: value } : item));
+    const modifiedArray = array.map((item) =>
+      item.id === i + 1 ? { ...item, answer: value } : item,
+    );
     this.setState({
       QnAExSets: modifiedArray,
     });
@@ -127,12 +166,15 @@ class ProbMaking extends Component {
     const array = [1, 2, 3];
     if (i === 0) {
       array.forEach(
-        (j) => (ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = '#F1EBE6'),
+        (j) =>
+          (ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor =
+            '#F1EBE6'),
       );
     } else {
       array.forEach((j) => {
         if (i === j) {
-          ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = 'white';
+          ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor =
+            'white';
         } else {
           ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = 'gray';
         }
@@ -188,11 +230,13 @@ class ProbMaking extends Component {
                     array.forEach((i) => {
                       if (i < data.answer.length) {
                         document.querySelector('#checkbox' + i).checked = false;
-                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className = 'Checkdiv';
+                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
+                          'Checkdiv';
                       }
                     });
                     document.querySelector('#checkbox' + 0).checked = true;
-                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv0`)).className = 'Checkani';
+                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv0`)).className =
+                      'Checkani';
                   }}
                 >
                   ① {answers_each[j]}
@@ -215,11 +259,13 @@ class ProbMaking extends Component {
                     array.forEach((i) => {
                       if (i < data.answer.length) {
                         document.querySelector('#checkbox' + i).checked = false;
-                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className = 'Checkdiv';
+                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
+                          'Checkdiv';
                       }
                     });
                     document.querySelector('#checkbox' + 1).checked = true;
-                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv1`)).className = 'Checkani';
+                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv1`)).className =
+                      'Checkani';
                   }}
                 >
                   ② {answers_each[j]}
@@ -242,11 +288,13 @@ class ProbMaking extends Component {
                     array.forEach((i) => {
                       if (i < data.answer.length) {
                         document.querySelector('#checkbox' + i).checked = false;
-                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className = 'Checkdiv';
+                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
+                          'Checkdiv';
                       }
                     });
                     document.querySelector('#checkbox' + 2).checked = true;
-                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv2`)).className = 'Checkani';
+                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv2`)).className =
+                      'Checkani';
                   }}
                 >
                   ③ {answers_each[j]}
@@ -269,11 +317,13 @@ class ProbMaking extends Component {
                     array.forEach((i) => {
                       if (i < data.answer.length) {
                         document.querySelector('#checkbox' + i).checked = false;
-                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className = 'Checkdiv';
+                        ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
+                          'Checkdiv';
                       }
                     });
                     document.querySelector('#checkbox' + 3).checked = true;
-                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv3`)).className = 'Checkani';
+                    ReactDOM.findDOMNode(document.getElementById(`Checkdiv3`)).className =
+                      'Checkani';
                   }}
                 >
                   ④ {answers_each[j]}
@@ -388,7 +438,9 @@ class ProbMaking extends Component {
           onClick={(e) => {
             e.preventDefault();
             const array = this.state.QnAExSets;
-            const modifiedArray = array.map((item) => (item.id === this.probNumber + 1 ? { ...item, score: 4 } : item));
+            const modifiedArray = array.map((item) =>
+              item.id === this.probNumber + 1 ? { ...item, score: 4 } : item,
+            );
             this.setState({
               QnAExSets: modifiedArray,
             });
@@ -404,7 +456,9 @@ class ProbMaking extends Component {
           onClick={(e) => {
             e.preventDefault();
             const array = this.state.QnAExSets;
-            const modifiedArray = array.map((item) => (item.id === this.probNumber + 1 ? { ...item, score: 3 } : item));
+            const modifiedArray = array.map((item) =>
+              item.id === this.probNumber + 1 ? { ...item, score: 3 } : item,
+            );
             this.setState({
               QnAExSets: modifiedArray,
             });
@@ -419,7 +473,9 @@ class ProbMaking extends Component {
           onClick={(e) => {
             e.preventDefault();
             const array = this.state.QnAExSets;
-            const modifiedArray = array.map((item) => (item.id === this.probNumber + 1 ? { ...item, score: 2 } : item));
+            const modifiedArray = array.map((item) =>
+              item.id === this.probNumber + 1 ? { ...item, score: 2 } : item,
+            );
             this.setState({
               QnAExSets: modifiedArray,
             });
@@ -431,7 +487,9 @@ class ProbMaking extends Component {
     return (
       <article className="Desktop">
         <div className="Problemheader">
-          <h1 className="Problemtype_">2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?</h1>
+          <h1 className="Problemtype_">
+            2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
+          </h1>
           <h2 className="Problemtitle">{this.props.match.params.id} 영역</h2>
           <p className="Period">제 1교시</p>
           <p className="Nametag">성명</p>
@@ -447,7 +505,8 @@ class ProbMaking extends Component {
             const array = [0, 1, 2, 3];
             array.forEach((i) => {
               if (i < data.answer.length) {
-                ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className = 'Checkdiv';
+                ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
+                  'Checkdiv';
               }
             });
             if (this.state.mode === 'basic') {

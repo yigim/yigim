@@ -36,7 +36,7 @@ class ProbReady extends Component{
         return(
         <form onClick={()=>{
             if (this.state.mode === 'solving'){
-                this.props.history.push('/prob-solving')
+                this.props.history.push('/prob-link-input')
         }else if (this.state.mode === 'making'){
             this.props.history.push('/prob-making/'+this.props.match.params.id+'/0')
         }}}>

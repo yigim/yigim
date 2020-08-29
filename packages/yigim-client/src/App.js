@@ -15,14 +15,20 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '오잉',
-      userdata: [],
+      name: '',
+      userdata: [0, 0],
     };
   }
-  handleChangeName = (inputName) => {
-    this.setState({ name: inputName });
+  handleNameSubmit = (_name) => {
+    this.setState({
+      name: _name,
+    });
   };
-
+  handleDataSubmit = (_userdata) => {
+    this.setState({
+      userdata: _userdata,
+    });
+  };
   render() {
     return (
       <Router>
@@ -30,12 +36,46 @@ class App extends Component {
           <Route exact path="/" component={Home} />
           <Route exact path="/user-info" component={UserInfo} />
           <Route exact path="/prob-solve-ready" component={ProbReady}></Route>
-          <Route exact path="/prob-making/:id/0" component={ProbMaking}></Route>
+          <Route
+            exact
+            path="/prob-making/:id/0"
+            render={(props) => <ProbMaking text="hello, " {...props} />}
+          />
           <Route exact path="/prob-make-ready/:id/0" component={ProbReady}></Route>
           <Route exact path="/prob-making-done/" component={ProbMakingDone}></Route>
-          <Route exact path="/prob-link-input/" component={ProbLinkInput}></Route>
-          <Route exact path="/prob-solving/" component={ProbSolving}></Route>
-          <Route exact path="/prob-solve-done/" render={(props) => <ProbSolveDone {...props} isAuthed={true} />} />
+          <Route
+            exact
+            path="/prob-link-input/"
+            render={(props) => (
+              <ProbLinkInput function_name={this.handleNameSubmit} {...props} isAuthed={true} />
+            )}
+          />
+
+          {/* <Route exact path="/prob-solving/" component={ProbSolving}></Route> */}
+          <Route
+            exact
+            path="/prob-solving/"
+            render={(props) => (
+              <ProbSolving
+                name={this.state.name}
+                function_data={this.handleDataSubmit}
+                {...props}
+                isAuthed={true}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/prob-solve-done/"
+            render={(props) => (
+              <ProbSolveDone
+                name={this.state.name}
+                data={this.state.userdata}
+                {...props}
+                isAuthed={true}
+              />
+            )}
+          />
           <Route component={PageError}></Route>
         </Switch>
       </Router>
