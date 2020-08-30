@@ -45,13 +45,34 @@ custom:
       migrate: true
 functions:
   #  --- http ---
-  problemCreate:
-    handler: src/http/problemCreate.handler
+  testsCreate:
+    handler: src/http/testsCreate.handler
     events:
       - http:
           method: post
           cors: true
-          path: problemCreate
+          path: tests
+  testsReadItem:
+    handler: src/http/testsReadItem.handler
+    events:
+      - http:
+          method: get
+          cors: true
+          path: tests/{testId}
+  resultsCreate:
+    handler: src/http/resultsCreate.handler
+    events:
+      - http:
+          method: post
+          cors: true
+          path: tests/{testId}/results
+  resultsReadList:
+    handler: src/http/resultsReadList.handler
+    events:
+      - http:
+          method: get
+          cors: true
+          path: tests/{testId}/results
 resources:
   Resources:
     TestTable:
