@@ -3,8 +3,8 @@ service:
 
 plugins:
   - serverless-webpack
-  - serverless-offline
   - serverless-dynamodb-local
+  - serverless-offline
 
 provider:
   name: aws
@@ -54,7 +54,7 @@ functions:
           path: problemCreate
 resources:
   Resources:
-    UserTable:
+    TestTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
@@ -64,15 +64,19 @@ resources:
           - AttributeName: id
             KeyType: HASH
         BillingMode: PAY_PER_REQUEST
-        TableName: 'user'
-    ProblemTable:
+        TableName: 'test'
+    ResultTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
+          - AttributeName: testId
+            AttributeType: S
           - AttributeName: id
             AttributeType: S
         KeySchema:
-          - AttributeName: id
+          - AttributeName: testId
             KeyType: HASH
+          - AttributeName: id
+            KeyType: RANGE
         BillingMode: PAY_PER_REQUEST
-        TableName: 'problem'
+        TableName: 'result'

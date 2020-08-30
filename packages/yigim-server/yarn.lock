@@ -636,13 +636,6 @@
   resolved "https://registry.yarnpkg.com/@types/aws-lambda/-/aws-lambda-8.10.59.tgz#64f602aef1cac9b21a74aad6705bf350c4a5173a"
   integrity sha512-X/JclTKqHvo3nMTkHzClHhRz0yxn/VAr7J7LO6jBqaksZlhcDAWuU4oT1Yrt3E9MvX5jyyVIZtrwAI7oPXzXIg==
 
-"@types/aws-sdk@^2.7.0":
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/@types/aws-sdk/-/aws-sdk-2.7.0.tgz#83588b3d14ebdca1d4ce5e023387577568ce82f3"
-  integrity sha1-g1iLPRTr3KHUzl4CM4dXdWjOgvM=
-  dependencies:
-    aws-sdk "*"
-
 "@types/caseless@*":
   version "0.12.2"
   resolved "https://registry.yarnpkg.com/@types/caseless/-/caseless-0.12.2.tgz#f65d3d6389e01eeb458bd54dc8f52b95a9463bc8"
@@ -1220,7 +1213,7 @@ aws-lambda@^1.0.6:
     js-yaml "^3.13.1"
     watchpack "^2.0.0-beta.10"
 
-aws-sdk@*, aws-sdk@^2.7.0, aws-sdk@^2.718.0, aws-sdk@^2.720.0:
+aws-sdk@*, aws-sdk@^2.7.0, aws-sdk@^2.718.0:
   version "2.720.0"
   resolved "https://registry.yarnpkg.com/aws-sdk/-/aws-sdk-2.720.0.tgz#b834adc6b7458c41621f8e2169602c69c655f504"
   integrity sha512-899YXs6iWae82GGJM95S5MFBPIG8pE9aq+GlSr47mz7te97hGX0OcjPs3GuGZWA6Nrp0MCR9eMqu6DwBlYGltA==
@@ -4987,6 +4980,11 @@ nanoid@^2.1.0:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
   integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
+
+nanoid@^3.1.12:
+  version "3.1.12"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.12.tgz#6f7736c62e8d39421601e4a0c77623a97ea69654"
+  integrity sha512-1qstj9z5+x491jfiC4Nelk+f8XBad7LN20PmyWINJEMRSf3wcAjAWysw1qaA8z6NSKe2sjq1hRSDpBH5paCb6A==
 
 nanomatch@^1.2.13, nanomatch@^1.2.9:
   version "1.2.13"

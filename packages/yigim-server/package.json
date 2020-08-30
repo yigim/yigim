@@ -4,11 +4,11 @@
   "author": "geongun20 <leesg9@snu.ac.kr>",
   "license": "ISC",
   "scripts": {
-    "dev": "serverless offline"
+    "db:install": "serverless dynamodb install --stage dev",
+    "dev": "serverless offline start"
   },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.59",
-    "@types/aws-sdk": "^2.7.0",
     "fork-ts-checker-webpack-plugin": "3.0.1",
     "serverless": "^1.76.1",
     "serverless-dynamodb-local": "^0.2.39",
@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "aws-lambda": "^1.0.6",
-    "aws-sdk": "^2.720.0",
-    "dynamoose": "^2.3.0"
+    "dynamoose": "^2.3.0",
+    "nanoid": "^3.1.12"
   }
 }
