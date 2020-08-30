@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactDOM from 'react-dom'
 import './probmaking.css';
 
 class ProbMaking extends Component{
@@ -11,28 +12,28 @@ class ProbMaking extends Component{
         q: '',
         mention: '수정하기',
         QnAExSets: [
-            {id: 1, question: this.props.match.params.id+'의 주량은?', answer: ['1병' , '2병', '3병', '반 병병병병병병']},
-            {id: 2, question: this.props.match.params.id+'의 입대 날짜는?', answer: ['17년 2월', '18년 2월', '19년 2월', '미필']},
-            {id: 3, question: this.props.match.params.id+'의 나이는?', answer: ['10살', '20살', '22살', '30살']},
-            {id: 4, question: this.props.match.params.id+'의 가족관계는?', answer: ['외동', '누나', '여동생', '누나, 여동생']},
-            {id: 5, question: this.props.match.params.id+'이 좋아하는 숫자는?', answer: ['1', '2', '3', '4']},
-            {id: 6, question: this.props.match.params.id+'이 싫어하는 숫자는??', answer: ['1', '2', '3', '4']},
-            {id: 7, question: this.props.match.params.id+'이 좋아하는 알파벳은?', answer: ['a', 'b', 'c', 'd']},
-            {id: 8, question: this.props.match.params.id+'이 싫어하는 알파벳은?', answer: ['a', 'b', 'c', 'd']},
-            {id: 9, question: this.props.match.params.id+'은 남자인가?', answer: ['O', 'X']},
-            {id: 10, question: this.props.match.params.id+'은 사람인가?', answer: ['O', 'X']}
+            {id: 1, question: this.props.match.params.id+'의 주량은?', answer: ['1병' , '2병', '3병', '반 병병병병병병'], score: 3},
+            {id: 2, question: this.props.match.params.id+'의 입대 날짜는?', answer: ['17년 2월', '18년 2월', '19년 2월', '미필'], score: 3},
+            {id: 3, question: this.props.match.params.id+'의 나이는?', answer: ['10살', '20살', '22살', '30살'], score: 3},
+            {id: 4, question: this.props.match.params.id+'의 가족관계는?', answer: ['외동', '누나', '여동생', '누나, 여동생'], score: 3},
+            {id: 5, question: this.props.match.params.id+'이 좋아하는 숫자는?', answer: ['1', '2', '3', '4'], score: 3},
+            {id: 6, question: this.props.match.params.id+'이 싫어하는 숫자는??', answer: ['1', '2', '3', '4'], score: 3},
+            {id: 7, question: this.props.match.params.id+'이 좋아하는 알파벳은?', answer: ['a', 'b', 'c', 'd'], score: 3},
+            {id: 8, question: this.props.match.params.id+'이 싫어하는 알파벳은?', answer: ['a', 'b', 'c', 'd'], score: 3},
+            {id: 9, question: this.props.match.params.id+'은 남자인가?', answer: ['O', 'X'], score: 3},
+            {id: 10, question: this.props.match.params.id+'은 사람인가?', answer: ['O', 'X'], score: 3}
         ],
         AdditionalQnASets: [
-            {id: 1, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중']},
-            {id: 2, question: this.props.match.params.id+'가 좋아하는 활동은?', answer: ['야외 활동', '실내 활동']},
-            {id: 3, question: this.props.match.params.id+'가 다닌 고등학교는?', answer: ['영재고', '과학고', '자사고', '외고']},
-            {id: 4, question: this.props.match.params.id+'는?', answer: ['첫째', '둘째', '막내', '외동']},
-            {id: 5, question: this.props.match.params.id+'의 연령대는?', answer: ['청년층', '장년층', '노년층']},
-            {id: 6, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중']},
-            {id: 7, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중']},
-            {id: 8, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중']},
-            {id: 9, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중']},
-            {id: 10, question: this.props.match.params.id+'가 가장 좋아하는 생선은?', answer: ['고등어', '갈치', '생일선물']},
+            {id: 1, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중'], score: 3},
+            {id: 2, question: this.props.match.params.id+'가 좋아하는 활동은?', answer: ['야외 활동', '실내 활동'], score: 3},
+            {id: 3, question: this.props.match.params.id+'가 다닌 고등학교는?', answer: ['영재고', '과학고', '자사고', '외고'], score: 3},
+            {id: 4, question: this.props.match.params.id+'는?', answer: ['첫째', '둘째', '막내', '외동'], score: 3},
+            {id: 5, question: this.props.match.params.id+'의 연령대는?', answer: ['청년층', '장년층', '노년층'], score: 3},
+            {id: 6, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중'], score: 3},
+            {id: 7, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중'], score: 3},
+            {id: 8, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중'], score: 3},
+            {id: 9, question: this.props.match.params.id+'의 연애 상태는?', answer: ['연애하는 중', '연애하지 않는 중', '썸타는 중'], score: 3},
+            {id: 10, question: this.props.match.params.id+'가 가장 좋아하는 생선은?', answer: ['고등어', '갈치', '생일선물'], score: 3},
         ],
         //문제 만드는 사람이 만드는 데이터
         UserQnASets: [this.props.match.params.id]
@@ -62,6 +63,26 @@ class ProbMaking extends Component{
         this.setState({
             QnAExSets: modifiedArray
         })
+    }
+    //난이도 버튼 배경 색을 바꾸는 함수
+    changeButtonColor = (i) => {
+
+        const array=[1, 2, 3];
+        if(i===0)
+        {
+            array.forEach(j => ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = '#F1EBE6');
+        }
+        else{
+            array.forEach(j => {
+                if(i===j) {
+                    ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = 'white';
+                }
+                else{
+                    ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = 'gray';
+                }
+            }
+            );
+        }
     }
     render(){
         var data=this.state.QnAExSets[this.probNumber];
@@ -163,11 +184,52 @@ class ProbMaking extends Component{
                 j=j+1;
             }
         }
+        //문제 난이도
         var problevel = <div className="Problemlevel">
                             문제 난이도:
-                            <input className="pseudobutton" value="★" type="radio" id="level1"></input>
-                            <input className="pseudobutton" value="★" type="radio" id="level2"></input>
-                            <input className="pseudobutton" value="★" type="radio" id="level3"></input>
+                            <input className="Pseudobutton" value="상" type="button" id="level3" onClick={(e)=>{
+                                e.preventDefault();
+                                const array = this.state.QnAExSets;
+                                const modifiedArray = array.map(
+                                    item => item.id===this.probNumber+1
+                                    ?({...item, score: 4})
+                                    : item
+                                )
+                                this.setState({
+                                    QnAExSets: modifiedArray
+                                })
+                                this.changeButtonColor(3);
+                                console.log(this.state.QnAExSets);
+                        }}
+                        />
+                            <input className="Pseudobutton" value="중" type="button" id="level2" onClick={(e)=>{
+                                e.preventDefault();
+                                const array = this.state.QnAExSets;
+                                const modifiedArray = array.map(
+                                    item => item.id===this.probNumber+1
+                                    ?({...item, score: 3})
+                                    : item
+                                )
+                                this.setState({
+                                    QnAExSets: modifiedArray
+                                })
+                                this.changeButtonColor(2);
+                        }}
+                        />
+                            <input className="Pseudobutton" value="하" type="button" id="level1" onClick={(e)=>{
+                                e.preventDefault();
+                                const array = this.state.QnAExSets;
+                                const modifiedArray = array.map(
+                                    item => item.id===this.probNumber+1
+                                    ?({...item, score: 2})
+                                    : item
+                                )
+                                this.setState({
+                                    QnAExSets: modifiedArray
+                                })
+                                this.changeButtonColor(1);
+                        }}
+                        />
                         </div>
         return(
             <article className="Desktop">
@@ -182,6 +244,7 @@ class ProbMaking extends Component{
                 <form 
                 onSubmit = {(e)=>{
                     e.preventDefault();
+                    this.changeButtonColor(0);
                     var j=0;
                     var k=0;
                     if (this.state.mode==='basic'){
@@ -203,7 +266,7 @@ class ProbMaking extends Component{
                         this.probNumber=this.probNumber+1;
                         this.setState({
                             numberForCheck: this.state.probNumber_add,
-                            UserQnASets: this.state.UserQnASets.concat({id: this.probNumber,picked_number: k-9,question: show_question, answer: answers_each})
+                            UserQnASets: this.state.UserQnASets.concat({id: this.probNumber,picked_number: k-9,question: show_question, answer: answers_each, score: this.state.QnAExSets[this.probNumber-1].score})
                         })
                     }
                     if (this.probNumber===10){
@@ -222,8 +285,9 @@ class ProbMaking extends Component{
                 {this.probNumber+1}.{show_question}
                 </div>
                 <div className="Choice">
-                    <ol>
-                        {article}
+                    <ol>    
+                        {problevel}  
+                        {article}                
                         <input className="Modify" id='modechange' type="button" value={this.state.mention} onClick={(e)=>{
                             if(this.state.mode==='basic'){
                             this.setState({

@@ -241,34 +241,27 @@
   }
 
   .Problemlevel {
-      position: absolute;
-      text-align: center;
-      width: 400px;
-      left: 300px;
-      top: 50px;
-      border-radius: 15px;
-      background: #D9D9D9;
-      font-family: NanumMyeongjo;
-      font-size: 36px;
-  }
-  .Problemlevelselect {
     position: absolute;
     text-align: center;
-    width: 150px;
-    left: 600px;
-    top: 60px;
+    width: 400px;
+    left: 620px;
+    top: -20px;
     border-radius: 15px;
+    border: solid gray 2px;
     background: #D9D9D9;
-    color: #000000;
     font-family: NanumMyeongjo;
     font-size: 36px;
-}
-.pseudobutton{
+  }
+
+.Pseudobutton{
   background: none;
   width:52px;
   height:52px;
-  border: none;
-  font-size:36px
+  border: 3px solid black;
+  font-size:36px;
+}
+.Pseudobutton:hover{
+  opacity: 0.5;
 }
 .Anotherquestion{
   position: absolute;
