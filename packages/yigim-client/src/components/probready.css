@@ -71,6 +71,7 @@
 }
 
 .probsolvebutton {
+  z-index: 1;
   position: absolute;
   width: 339px;
   height: 60px;
