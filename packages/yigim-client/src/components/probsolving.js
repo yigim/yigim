@@ -99,6 +99,12 @@ class ProbSolving extends Component {
     });
   };
   render() {
+    // const {
+    //   name,
+    //   function_data,
+    //   match: { params },
+    //   history,
+    // } = this.props;
     var prob = this.state.userdata[Number(this.probNumber)];
     var question = this.probNumber + '. ' + prob.question;
     var answer = [];
@@ -289,7 +295,9 @@ class ProbSolving extends Component {
                   result: 'default',
                 });
               } else {
-                this.props.history.push('/prob-solve-done');
+                e.preventDefault();
+                this.props.function_data([this.state.score_user, this.state.score_total]);
+                this.props.history.push('/prob-solve-done/' + this.props.match.params.solveid);
               }
             }}
           >

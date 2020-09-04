@@ -3,19 +3,18 @@ import axios from 'axios';
 
 class ProbSolveDone extends Component {
   state = {
-    solved_people: [],
+    people_solved: [],
   };
   get_ranking = () => {
     axios
       .get('http://localhost:3000/' + this.props.solveid)
       .then((response) => {
         this.setState({
-          solved_people: response,
+          people_solved: response,
         });
       })
       .catch((error) => {
         console.log(error);
-        this.props.history.push('/error');
       });
   };
   render() {
@@ -28,7 +27,7 @@ class ProbSolveDone extends Component {
         <br />
         순위: <br />
         {/*일단 푼 사람들의 모든 데이터 보여주기*/}
-        {this.state.solved_people}
+        {this.state.people_solved}
         {/* 순위를 표로 만들어서 제공하면 좋을 듯 */}
         <button
           onClick={(e) => {

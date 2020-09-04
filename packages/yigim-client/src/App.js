@@ -7,7 +7,6 @@ import Home from './components/Home';
 import ProbSolving from './components/probsolving';
 import ProbSolveDone from './components/probsolvedone';
 import PageError from './components/pageerror';
-import ProbLinkInput from './components/problinkinput';
 
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -64,15 +63,9 @@ class App extends Component {
           />
           <Route
             exact
-            path="/prob-solve-done/"
+            path="/prob-solve-done/:solveid"
             render={(props) => (
-              <ProbSolveDone
-                solveid={this.state.solveid}
-                name={this.state.name}
-                data={this.state.userdata}
-                {...props}
-                isAuthed={true}
-              />
+              <ProbSolveDone name={this.state.name} data={this.state.userdata} {...props} isAuthed={true} />
             )}
           />
           <Route component={PageError}></Route>
