@@ -2,8 +2,9 @@ import { APIGatewayProxyHandler } from 'aws-lambda';
 import dynamoose from 'dynamoose';
 import { ResultModel } from '../models/Result';
 import { TestModel } from '../models/Test';
+import { STAGE } from '../constants';
 
-dynamoose.aws.ddb.local();
+if (STAGE === 'dev') dynamoose.aws.ddb.local();
 
 export const handler: APIGatewayProxyHandler = async (event, _context) => {
   const { id, data } = JSON.parse(event.body!);
