@@ -288,7 +288,7 @@ class ProbSolving extends Component {
           <form
             onClick={(e) => {
               e.preventDefault();
-              if (this.probNumber != 10) {
+              if (this.probNumber !== 10) {
                 this.probNumber = this.probNumber + 1;
                 console.log(this.probNumber);
                 this.setState({
