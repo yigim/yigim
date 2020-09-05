@@ -1,89 +1,88 @@
 @font-face {
-  font-family:"NanumMyeongjo";
-  src:url("../fonts/NanumMyeongjo.ttf") format("truetype");
+  font-family: 'NanumMyeongjo';
+  src: url('../fonts/NanumMyeongjo.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family:"HY태고딕";
-  src:url("../fonts/HY태고딕.ttf") format("truetype");
+  font-family: 'HY태고딕';
+  src: url('../fonts/HY태고딕.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family:"SinGraphic";
-  src:url("../fonts/SinGraphic.ttf") format("truetype");
+  font-family: 'SinGraphic';
+  src: url('../fonts/SinGraphic.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family:"Gothic A1";
-  src:url("../fonts/GothicA1-Regular.ttf") format("truetype");
+  font-family: 'Gothic A1';
+  src: url('../fonts/GothicA1-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 @font-face {
-  font-family:"Nanum Brush Script";
-  src:url("../fonts/NanumBrushScript-Regular.ttf") format("truetype");
+  font-family: 'Nanum Brush Script';
+  src: url('../fonts/NanumBrushScript-Regular.ttf') format('truetype');
   font-style: normal;
   font-weight: normal;
 }
 
-.Desktop {    
-    background: #F1EBE6;
-      height: 1024px;
-      width: 1439px;
-      margin: 0px;
+.Desktop {
+  background: #f1ebe6;
+  height: 1024px;
+  width: 1439px;
+  margin: 0px;
 }
 
 .Choice {
-    position: absolute;
-    width: auto;
-    height: auto;
-    left: 395px;
-    top: 500px;
-    background-color: #F1EBE6;
-    border:none;
+  position: absolute;
+  width: auto;
+  height: auto;
+  left: 395px;
+  top: 500px;
+  background-color: #f1ebe6;
+  border: none;
 
-    font-family: NanumMyeongjo;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 36px;
-    line-height: 80px;
-    /* identical to box height */
-    
-    letter-spacing: 0.05em;
-    
-    color: #000000;
-  }
-  .Modifychoice {
-    font-family: NanumMyeongjo;
-    font-size: 36px;
-  }
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 80px;
+  /* identical to box height */
 
-  .Modifyproblem {
-    font-family: HY태고딕;
-    font-size: 36px;
-  }
-  .Problem {
-    position: absolute;
-    width: 840px;
-    height: 44px;
-    left: 300px;
-    top: 392px;
-    
-    font-family: HY태고딕;
-    font-size: 38px;
-    line-height: 45px;
-    
-    color: #000000;
-    
-  }
+  letter-spacing: 0.05em;
 
-  .Problemheader {
-    height: 351px;
-    width: 1440px;
-    background: #F1EBE6;
+  color: #000000;
+}
+.Modifychoice {
+  font-family: NanumMyeongjo;
+  font-size: 36px;
+}
+
+.Modifyproblem {
+  font-family: HY태고딕;
+  font-size: 36px;
+}
+.Problem {
+  position: absolute;
+  width: 840px;
+  height: 44px;
+  left: 300px;
+  top: 392px;
+
+  font-family: HY태고딕;
+  font-size: 38px;
+  line-height: 45px;
+
+  color: #000000;
+}
+
+.Problemheader {
+  height: 351px;
+  width: 1440px;
+  background: #f1ebe6;
 }
 
 .Problemtype_ {
@@ -94,7 +93,7 @@
   left: 56px;
   margin: 0px;
   border-bottom: black 5px solid;
-  
+
   text-align: center;
   font-family: NanumMyeongjo;
   font-style: normal;
@@ -102,13 +101,13 @@
   font-size: 36px;
   line-height: 60px;
   /* identical to box height */
-  
+
   letter-spacing: 0.02em;
-  
+
   color: #000000;
 }
 
-  .Problemtitle {
+.Problemtitle {
   position: absolute;
   width: 1440px;
   height: 110px;
@@ -123,15 +122,15 @@
   line-height: 110px;
 
   color: #000000;
-  }
+}
 
-  .Period {
+.Period {
   position: absolute;
   width: 180px;
   height: 50px;
   left: 89.39px;
   top: 235px;
-  
+
   border: black solid 2px;
   border-radius: 15px;
 
@@ -146,11 +145,10 @@
   letter-spacing: 0.07em;
 
   color: #000000;
+}
 
-  }
-
-  .Nametag {
-      position: absolute;
+.Nametag {
+  position: absolute;
   width: 72px;
   height: 50px;
   left: 1150px;
@@ -165,11 +163,10 @@
   line-height: 45px;
   /* identical to box height */
   color: #000000;
+}
 
-  }
-
-  .Name {
-      position: absolute;
+.Name {
+  position: absolute;
   width: 100px;
   height: 50px;
   left: 1225px;
@@ -184,90 +181,133 @@
   line-height: 45px;
 
   color: #000000;
-  }
-
-  .Modify {
-    position: absolute;
-    width: 300px;
-    left: 300px;
-    top: -20px;
-    border-radius: 15px;
-    background: #D9D9D9;
-
-    font-family: NanumMyeongjo;
-    font-size: 36px;
-    
-  }
-
-  .Submit {
-    position: absolute;
-    width: 300px;
-    left: 300px;
-    top: 350px;
-    border-radius: 15px;
-    background: #D9D9D9;
-
-    font-family: NanumMyeongjo;
-    font-size: 36px;
-  }
-
-  .Pagenumber {
-    position: absolute;
-    width: 98px;
-    height: 60px;
-    left: 700px;
-    top: 936px;
-
-    font-family: NanumMyeongjo;
-    font-style: normal;
-    font-weight: 800;
-    font-size: 48px;
-    line-height: 60px;
-    /* identical to box height */
-
-    letter-spacing: 0.105em;
-
-    color: #000000;
-  }
-
-  .Checkbox {
-    width: 30px;
-    height: 30px;
-    opacity: 0;
-  }
-
-  .Checkbox:hover {
-    opacity: 1;
-  }
-
-  .Problemlevel {
-    position: absolute;
-    text-align: center;
-    width: 400px;
-    left: 620px;
-    top: -20px;
-    border-radius: 15px;
-    border: solid gray 2px;
-    background: #D9D9D9;
-    font-family: NanumMyeongjo;
-    font-size: 36px;
-  }
-
-.Pseudobutton{
-  background: none;
-  width:52px;
-  height:52px;
-  border: 3px solid black;
-  font-size:36px;
 }
-.Pseudobutton:hover{
+
+.Modify {
+  position: absolute;
+  width: 300px;
+  left: 300px;
+  top: -20px;
+  border-radius: 15px;
+  background: #d9d9d9;
+
+  font-family: NanumMyeongjo;
+  font-size: 36px;
+}
+
+.Submit {
+  position: absolute;
+  width: 300px;
+  left: 300px;
+  top: 350px;
+  border-radius: 15px;
+  background: #d9d9d9;
+
+  font-family: NanumMyeongjo;
+  font-size: 36px;
+}
+
+.Pagenumber {
+  position: absolute;
+  width: 98px;
+  height: 60px;
+  left: 700px;
+  top: 936px;
+
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 48px;
+  line-height: 60px;
+  /* identical to box height */
+
+  letter-spacing: 0.105em;
+
+  color: #000000;
+}
+
+.Checkbox {
+  width: 30px;
+  height: 30px;
+  opacity: 0;
+  display: none;
+}
+
+.Checkbox:hover {
+  opacity: 1;
+}
+
+.Problemlevel {
+  position: absolute;
+  text-align: center;
+  width: 400px;
+  left: 620px;
+  top: -20px;
+  border-radius: 15px;
+  border: solid gray 2px;
+  background: #d9d9d9;
+  font-family: NanumMyeongjo;
+  font-size: 36px;
+}
+
+.Pseudobutton {
+  background: none;
+  width: 52px;
+  height: 52px;
+  border: 3px solid black;
+  font-size: 36px;
+}
+.Pseudobutton:hover {
   opacity: 0.5;
 }
-.Anotherquestion{
+.Anotherquestion {
   position: absolute;
   top: 500px;
   left: 800px;
   font-size: 35px;
   height: 70px;
   width: 300px;
+}
+.Buttonselect {
+  background-color: #f1ebe6;
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 80px;
+  border: none;
+}
+.Buttonselect:hover {
+  color: gray;
+}
+.Checkani {
+  position: absolute;
+  overflow: hidden;
+  animation-name: check;
+  animation-duration: 1s;
+  animation-play-state: running;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  display: inline-flex;
+  left: 40px;
+  width: 0px;
+}
+.Checkdiv {
+  position: absolute;
+  overflow: hidden;
+  display: inline-flex;
+  left: 40px;
+  width: 0px;
+}
+.Checksign {
+  position: relative;
+  width: 50px;
+}
+@keyframes check {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 50px;
+  }
 }

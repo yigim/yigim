@@ -35,11 +35,7 @@ class App extends Component {
           <Route exact path="/prob-making-done/" component={ProbMakingDone}></Route>
           <Route exact path="/prob-link-input/" component={ProbLinkInput}></Route>
           <Route exact path="/prob-solving/" component={ProbSolving}></Route>
-          <Route exact path="/prob-solve-done/"
-          render={(props)=>(
-            <ProbSolveDone {...props} isAuthed={true}/>
-          )}
-          />
+          <Route exact path="/prob-solve-done/" render={(props) => <ProbSolveDone {...props} isAuthed={true} />} />
           <Route component={PageError}></Route>
         </Switch>
       </Router>
