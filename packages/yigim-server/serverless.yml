@@ -17,17 +17,8 @@ provider:
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
-        - 'lambda:InvokeFunction'
-        - dynamodb:GetItem
-        - dynamodb:CreateItem
-        - dynamodb:UpdateItem
-      Resource:
-        - Fn::Join:
-            - ':'
-            - - arn:aws:lambda
-              - Ref: AWS::Region
-              - Ref: AWS::AccountId
-              - function:*
+        - 'dynamodb:*'
+      Resource: '*'
 custom:
   region: ap-northeast-2
   stage: ${opt:stage, 'dev'}
