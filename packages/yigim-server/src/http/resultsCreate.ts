@@ -8,16 +8,42 @@ if (STAGE === 'dev') dynamoose.aws.ddb.local();
 
 export const handler: APIGatewayProxyHandler = async (event, _context) => {
   const { id, data } = JSON.parse(event.body!);
-
   const { testId } = event.pathParameters!;
 
+  if (!id || !data) {
+    return {
+      statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: 'Bad Request: id or data are undefined inrequest body',
+    };
+  }
+
+  if (!testId) {
+    return {
+      statusCode: 400,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: 'Bad Request: testId is undefined in path parameters',
+    };
+  }
+
   const test = await TestModel.get(testId);
-  if (!test) throw Error('Test model not found.');
+  if (!test)
+    return {
+      statusCode: 404,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+      body: 'Not found: test',
+    };
 
   const result = await ResultModel.create({ testId, id, data });
   return {
     statusCode: 200,
-    headers: {
+    Headers: {
       'Access-Control-Allow-Origin': '*',
     },
     body: JSON.stringify(result),
