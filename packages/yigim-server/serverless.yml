@@ -5,23 +5,20 @@ plugins:
   - serverless-webpack
   - serverless-dynamodb-local
   - serverless-offline
+  # - serverless-domain-manager
 
 provider:
   name: aws
   runtime: nodejs12.x
-  stage: ${self:custom.stage}
-  region: ${self:custom.region}
-  environment:
-    STAGE: ${self:custom.stage}
-  timeout: 30
+  stage: ${opt:stage, 'dev'}
+  region: ap-northeast-2
+  profile: yigim
   iamRoleStatements:
     - Effect: 'Allow'
       Action:
         - 'dynamodb:*'
       Resource: '*'
 custom:
-  region: ap-northeast-2
-  stage: ${opt:stage, 'dev'}
   webpack:
     keepOutputDirectory: true
     includeModules: true
@@ -34,6 +31,12 @@ custom:
     start:
       port: 8000
       migrate: true
+  # customDomain:
+  #   domainName: yigim.com
+  #   stage: ${opt:stage, 'dev'}
+  #   basePath: ${opt:stage, 'dev'}
+  #   endpointType: regional
+  #   createRoute53Record: true
 functions:
   #  --- http ---
   testsCreate:
