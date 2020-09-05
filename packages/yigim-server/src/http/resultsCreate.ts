@@ -17,6 +17,9 @@ export const handler: APIGatewayProxyHandler = async (event, _context) => {
   const result = await ResultModel.create({ testId, id, data });
   return {
     statusCode: 200,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+    },
     body: JSON.stringify(result),
   };
 };
