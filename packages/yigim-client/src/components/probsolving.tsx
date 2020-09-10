@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import './probsolving.css';
-import Osign from '../images/Osign.png';
-import Xsign from '../images/Xsign.png';
 import { useHistory, useParams } from 'react-router-dom';
+
 interface Props {
   functionData: (userData: any[]) => void;
+  name: string;
 }
+const Osign = require('../images/Osign.png');
+const Xsign = require('../images/xsign.png');
 const ProbSolving = ({ functionData }: Props) => {
   const history = useHistory();
   const { solveId } = useParams();
@@ -120,7 +122,7 @@ const ProbSolving = ({ functionData }: Props) => {
               className="Buttonselect"
               id={String(i)}
               onClick={(e) => {
-                if (prob.picked_number + Number(e.target.id) + 1) {
+                if (prob.picked_number + Number((e.target as HTMLElement).id) + 1) {
                   rightAnswer();
                 } else {
                   wrongAnswer();
@@ -139,9 +141,9 @@ const ProbSolving = ({ functionData }: Props) => {
             <button
               type="button"
               className="Buttonselect"
-              id={i}
+              id={String(i)}
               onClick={(e) => {
-                if (Number(prob.picked_number) === Number(e.target.id) + 1) {
+                if (Number(prob.picked_number) === Number((e.target as HTMLElement).id) + 1) {
                   rightAnswer();
                 } else {
                   wrongAnswer();
@@ -160,9 +162,9 @@ const ProbSolving = ({ functionData }: Props) => {
             <button
               type="button"
               className="Buttonselect"
-              id={i}
+              id={String(i)}
               onClick={(e) => {
-                if (Number(prob.picked_number) === Number(e.target.id) + 1) {
+                if (Number(prob.picked_number) === Number((e.target as HTMLElement).id) + 1) {
                   rightAnswer();
                 } else {
                   wrongAnswer();
@@ -181,9 +183,9 @@ const ProbSolving = ({ functionData }: Props) => {
             <button
               type="button"
               className="Buttonselect"
-              id={i}
+              id={String(i)}
               onClick={(e) => {
-                if (Number(prob.picked_number) === Number(e.target.id) + 1) {
+                if (Number(prob.picked_number) === Number((e.target as HTMLElement).id) + 1) {
                   rightAnswer();
                 } else {
                   wrongAnswer();

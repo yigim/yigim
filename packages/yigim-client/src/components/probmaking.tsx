@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './probmaking.css';
-import Checksign from '../images/Checksign.png';
 import { useParams, useHistory } from 'react-router-dom';
 
+//typescript image import 방식
+const Checksign = require('../images/checksign.png');
 const ProbMaking = () => {
   const { id } = useParams();
   const history = useHistory();
@@ -144,35 +145,32 @@ const ProbMaking = () => {
   const [probNumber, setProbNumber] = useState(0);
 
   //질문 수정 후 저장하는 함수
-  const handleChangeQuestion = (i, value) => {
+  const handleChangeQuestion = (i: number, value: string) => {
     const modifiedArray = qnaExSets.map((item) =>
       item.id === i + 1 ? { ...item, question: value } : item,
     );
     setQnaExSets(modifiedArray);
   };
   //답변 수정 후 저장하는 함수
-  const handleChangeAnswer = (i, value) => {
+  const handleChangeAnswer = (i: number, value: any) => {
     const modifiedArray = qnaExSets.map((item) =>
       item.id === i + 1 ? { ...item, answer: value } : item,
     );
     setQnaExSets(modifiedArray);
   };
   //난이도 버튼 배경 색을 바꾸는 함수
-  const changeButtonColor = (i) => {
+  //그냥 Element에서는 style 지정이 되지 않고 HTMLElement에서만 style 지정이 되어서 temp1이라는 임시 변수를 선언했습니다.
+  const changeButtonColor = (i: number) => {
     const array = [1, 2, 3];
+    const temp1 = ReactDOM.findDOMNode(document.getElementById(`level${j}`)) as HTMLElement;
     if (i === 0) {
-      array.forEach(
-        (j) =>
-          (ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor =
-            '#F1EBE6'),
-      );
+      array.forEach((j) => (temp1.style.backgroundColor = '#F1EBE6'));
     } else {
       array.forEach((j) => {
         if (i === j) {
-          ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor =
-            'white';
+          temp1.style.backgroundColor = 'white';
         } else {
-          ReactDOM.findDOMNode(document.getElementById(`level${j}`)).style.backgroundColor = 'gray';
+          temp1.style.backgroundColor = 'gray';
         }
       });
     }
@@ -202,7 +200,9 @@ const ProbMaking = () => {
         className="Anotherquestion"
         onClick={(e) => {
           e.preventDefault();
-          handleChangeAnswer();
+          //함수에 input값 추가
+          handleChangeQuestion(probNumber, additionalQnaSets[probNumberAdd].question);
+          handleChangeAnswer(probNumber, additionalQnaSets[probNumberAdd].answer);
           setProbNumberAdd((probNumberAdd + 1) % additionalQnaSets.length);
         }}
         value="이 문제 건너뛰기"
@@ -222,16 +222,23 @@ const ProbMaking = () => {
                   e.preventDefault();
                   array.forEach((i) => {
                     if (i < data.answer.length) {
-                      document.querySelector('#checkbox' + i).checked = false;
-                      ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
-                        'Checkdiv';
+                      const temp1 = document.querySelector('#checkbox' + i) as HTMLInputElement;
+                      temp1.checked = false;
+                      const temp2 = ReactDOM.findDOMNode(
+                        document.getElementById(`Checkdiv${i}`),
+                      ) as HTMLElement;
+                      temp2.className = 'Checkdiv';
                     }
                   });
-                  document.querySelector('#checkbox' + 0).checked = true;
-                  ReactDOM.findDOMNode(document.getElementById(`Checkdiv0`)).className = 'Checkani';
+                  const temp1 = document.querySelector('#checkbox' + 0) as HTMLInputElement;
+                  temp1.checked = true;
+                  const temp2 = ReactDOM.findDOMNode(
+                    document.getElementById(`Checkdiv0`),
+                  ) as HTMLInputElement;
+                  temp2.className = 'Checkani';
                 }}
               >
-                ① {answers_each[j]}
+                ① {answersEach[j]}
                 <div className="Checkdiv" id="Checkdiv0">
                   <img className="Checksign" src={Checksign} alt="checksign" />
                 </div>
@@ -250,16 +257,23 @@ const ProbMaking = () => {
                   e.preventDefault();
                   array.forEach((i) => {
                     if (i < data.answer.length) {
-                      document.querySelector('#checkbox' + i).checked = false;
-                      ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
-                        'Checkdiv';
+                      const temp1 = document.querySelector('#checkbox' + i) as HTMLInputElement;
+                      temp1.checked = false;
+                      const temp2 = ReactDOM.findDOMNode(
+                        document.getElementById(`Checkdiv${i}`),
+                      ) as HTMLInputElement;
+                      temp2.className = 'Checkdiv';
                     }
                   });
-                  document.querySelector('#checkbox' + 1).checked = true;
-                  ReactDOM.findDOMNode(document.getElementById(`Checkdiv1`)).className = 'Checkani';
+                  const temp1 = document.querySelector('#checkbox' + 1) as HTMLInputElement;
+                  temp1.checked = true;
+                  const temp2 = ReactDOM.findDOMNode(
+                    document.getElementById(`Checkdiv1`),
+                  ) as HTMLElement;
+                  temp2.className = 'Checkani';
                 }}
               >
-                ② {answers_each[j]}
+                ② {answersEach[j]}
                 <div className="Checkdiv" id="Checkdiv1">
                   <img className="Checksign" src={Checksign} alt="checksign" />
                 </div>
@@ -278,16 +292,23 @@ const ProbMaking = () => {
                   e.preventDefault();
                   array.forEach((i) => {
                     if (i < data.answer.length) {
-                      document.querySelector('#checkbox' + i).checked = false;
-                      ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
-                        'Checkdiv';
+                      const temp1 = document.querySelector('#checkbox' + i) as HTMLInputElement;
+                      temp1.checked = false;
+                      const temp2 = ReactDOM.findDOMNode(
+                        document.getElementById(`Checkdiv${i}`),
+                      ) as HTMLInputElement;
+                      temp2.className = 'Checkdiv';
                     }
                   });
-                  document.querySelector('#checkbox' + 2).checked = true;
-                  ReactDOM.findDOMNode(document.getElementById(`Checkdiv2`)).className = 'Checkani';
+                  const temp1 = document.querySelector('#checkbox' + 2) as HTMLInputElement;
+                  temp1.checked = true;
+                  const temp2 = ReactDOM.findDOMNode(
+                    document.getElementById(`Checkdiv2`),
+                  ) as HTMLElement;
+                  temp2.className = 'Checkani';
                 }}
               >
-                ③ {answers_each[j]}
+                ③ {answersEach[j]}
                 <div className="Checkdiv" id="Checkdiv2">
                   <img className="Checksign" src={Checksign} alt="checksign" />
                 </div>
@@ -306,13 +327,20 @@ const ProbMaking = () => {
                   e.preventDefault();
                   array.forEach((i) => {
                     if (i < data.answer.length) {
-                      document.querySelector('#checkbox' + i).checked = false;
-                      ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className =
-                        'Checkdiv';
+                      const temp1 = document.querySelector('#checkbox' + i) as HTMLInputElement;
+                      temp1.checked = false;
+                      const temp2 = ReactDOM.findDOMNode(
+                        document.getElementById(`Checkdiv${i}`),
+                      ) as HTMLElement;
+                      temp2.className = 'Checkdiv';
                     }
                   });
-                  document.querySelector('#checkbox' + 3).checked = true;
-                  ReactDOM.findDOMNode(document.getElementById(`Checkdiv3`)).className = 'Checkani';
+                  const temp1 = document.querySelector('#checkbox' + 3) as HTMLInputElement;
+                  temp1.checked = true;
+                  const temp2 = ReactDOM.findDOMNode(
+                    document.getElementById(`Checkdiv3`),
+                  ) as HTMLElement;
+                  temp2.className = 'Checkani';
                 }}
               >
                 ④ {answersEach[j]}
@@ -331,7 +359,7 @@ const ProbMaking = () => {
       j = j + 1;
     }
   } else if (mode === 'modify') {
-    var showQuestion = (
+    const showQuestion = (
       <input
         className="Modifyproblem"
         type="text"
@@ -348,10 +376,10 @@ const ProbMaking = () => {
               <input
                 className="Modifychoice"
                 type="text"
-                id={j}
+                id={String(j)}
                 value={answersEach[j]}
                 onChange={(e) => {
-                  answersEach[e.target.id] = e.target.value;
+                  answersEach[Number(e.target.id)] = e.target.value;
                   handleChangeAnswer(probNumber, answersEach);
                 }}
               ></input>
@@ -365,10 +393,10 @@ const ProbMaking = () => {
               <input
                 className="Modifychoice"
                 type="text"
-                id={j}
+                id={String(j)}
                 value={answersEach[j]}
                 onChange={(e) => {
-                  answersEach[e.target.id] = e.target.value;
+                  answersEach[Number(e.target.id)] = e.target.value;
                   handleChangeAnswer(probNumber, answersEach);
                 }}
               ></input>
@@ -382,11 +410,11 @@ const ProbMaking = () => {
               <input
                 className="Modifychoice"
                 type="text"
-                id={j}
+                id={String(j)}
                 value={answersEach[j]}
                 onChange={(e) => {
-                  answersEach[e.target.id] = e.target.value;
-                  handleChangeAnswer(probNumber, answerEach);
+                  answersEach[Number(e.target.id)] = e.target.value;
+                  handleChangeAnswer(probNumber, answersEach);
                 }}
               ></input>
             </div>,
@@ -399,10 +427,10 @@ const ProbMaking = () => {
               <input
                 className="Modifychoice"
                 type="text"
-                id={j}
+                id={String(j)}
                 value={answersEach[j]}
                 onChange={(e) => {
-                  answersEach[e.target.id] = e.target.value;
+                  answersEach[Number(e.target.id)] = e.target.value;
                   handleChangeAnswer(probNumber, answersEach);
                 }}
               ></input>
@@ -488,13 +516,17 @@ const ProbMaking = () => {
           const array = [0, 1, 2, 3];
           array.forEach((i) => {
             if (i < data.answer.length) {
-              ReactDOM.findDOMNode(document.getElementById(`Checkdiv${i}`)).className = 'Checkdiv';
+              const temp2 = ReactDOM.findDOMNode(
+                document.getElementById(`Checkdiv${i}`),
+              ) as HTMLInputElement;
+              temp2.className = 'Checkdiv';
             }
           });
           if (mode === 'basic') {
             while (j < data.answer.length) {
-              if (document.querySelector('#checkbox' + j).checked === true) k = k + 10 + j;
-              document.querySelector('#checkbox' + j).checked = false;
+              const temp1 = document.querySelector('#checkbox' + j) as HTMLInputElement;
+              if (temp1.checked === true) k = k + 10 + j;
+              temp1.checked = false;
               j = j + 1;
             }
             if (k < 10) {

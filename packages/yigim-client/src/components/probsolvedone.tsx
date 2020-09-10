@@ -5,15 +5,15 @@ import { useHistory } from 'react-router-dom';
 interface Props {
   name: string;
   data: any[];
-  solveId: string;
 }
-const ProbSolveDone = ({ solveId, data, name }: Props) => {
+const ProbSolveDone = ({ data, name }: Props, { match }) => {
+  const solveId = match.params.solveId;
   const history = useHistory();
   const [peopleSolved, setPeopleSolved] = useState([]);
   const getRanking = () => {
     axios
       .get('http://localhost:3000/' + solveId)
-      .then((response) => {
+      .then((response: any) => {
         setPeopleSolved(response);
       })
       .catch((error) => {
