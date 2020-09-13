@@ -3,38 +3,21 @@ import { NavLink, useParams, useHistory } from 'react-router-dom';
 import './userinfo.css';
 
 interface Props {
-  getName?: (name: string) => void;
+  getName: (name: string) => void;
+  isSolve: boolean;
 }
-const UserInfo = ({ getName }: Props) => {
-  const { solveIdInParam } = useParams();
+const UserInfo = ({ getName, isSolve }: Props) => {
   const history = useHistory();
+
   const [name, setName] = useState('');
-  const [mode, setMode] = useState('');
-  const [solveId, setSolveId] = useState('');
-  const buttonValue = mode === 'making' ? '출제하기' : '응시하기';
-  const modeSet = () => {
-    if (mode === 'making' || mode === 'solving') {
-    } else {
-      if (solveId === undefined) {
-        setMode('making');
-      } else {
-        setMode('solving');
-        setSolveId(solveIdInParam);
-      }
-    }
-  };
-  modeSet();
+
   return (
     <article>
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (mode === 'making') {
-            history.push('/prob-make-ready/' + name + '/0');
-          } else if (mode === 'solving') {
-            getName(name);
-            history.push('/prob-solving/' + solveId);
-          }
+          getName(name);
+          history.push('/prob-ready');
         }}
       >
         <div className="Desktop10">
@@ -51,14 +34,18 @@ const UserInfo = ({ getName }: Props) => {
               e.preventDefault();
               setName(e.target.value);
             }}
-          ></input>
+          />
           <p className="Inputstudentid1">학번</p>
           <input className="Inputstudentid2" type="text"></input>
           <p className="Inputgender1">성별</p>
           <input type="button" className="Inputgender2" value="남자"></input>
           <input type="button" className="Inputgender3" value="여자"></input>
           <p className="Caution">※시험이 시작되기 전까지 표지를 넘기지 마시오.</p>
-          <input type="submit" className="button1" value={buttonValue}></input>
+          <input
+            type="submit"
+            className="button1"
+            value={isSolve ? '응시하기' : '출제하기'}
+          ></input>
           <NavLink to="/">
             <input type="button" className="button2" value="뒤로"></input>
           </NavLink>

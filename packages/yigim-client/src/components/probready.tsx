@@ -4,48 +4,24 @@ import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
 
 interface Props {
-  data_get: (_solveId: string, data: any) => void;
+  name: string;
+  isSolve: boolean;
 }
-const ProbReady = ({ data_get }: Props) => {
+const ProbReady = ({ name, isSolve }: Props) => {
   const history = useHistory();
-  const { solveId, id } = useParams();
-  const [mode, setMode] = useState('undefined');
-  const name = mode === 'solving' ? '응시자' : '출제자';
-  const buttonValue = mode === 'solving' ? '응시하기' : '출제하기';
-  const dataGet = (_solveId: string) => {
-    axios
-      .get('https://localhost:3000/' + _solveId)
-      .then((response) => {
-        //handle success
-        data_get(_solveId, response.data);
-        history.push('/user-info/' + solveId);
-      })
-      .catch((error) => {
-        history.push('/user-info/' + solveId);
-      })
-      .then(() => {
-        console.log('next');
-      });
-  };
-  if (mode === 'solving' || mode === 'making') {
-  } else if (id === undefined) {
-    setMode('soving');
-  } else {
-    setMode('making');
-  }
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        if (mode === 'solving') {
-          dataGet(solveId);
-        } else if (mode === 'making') {
-          history.push('/prob-making/' + id + '/0');
+        if (isSolve) {
+          history.push('/prob-solving/');
+        } else {
+          history.push('/prob-making/');
         }
       }}
     >
       <div className="Desktop14">
-        <h1 className="Title">&lt;{name} 주의사항 및 공지사항&gt;</h1>
+        <h1 className="Title">&lt;{isSolve ? '응시자' : '출제자'} 주의사항 및 공지사항&gt;</h1>
         <div className="Border_"></div>
         <p className="Text">
           ○ 문제지의 해당란에 <b>성명</b>과 <b>수험번호</b>를 쓰시오.
@@ -65,7 +41,7 @@ const ProbReady = ({ data_get }: Props) => {
 
       <button type="submit" className="probsolvebutton">
         {' '}
-        {buttonValue}{' '}
+        {isSolve ? '응시하기' : '출제하기'}{' '}
       </button>
     </form>
   );

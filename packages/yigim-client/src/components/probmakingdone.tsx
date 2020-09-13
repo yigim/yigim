@@ -1,17 +1,34 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import './probmakingdone.css';
+import { BACKEND_URL, Problem } from '../constants/constants';
 import { useLocation } from 'react-router-dom';
 
-interface Props {}
-const ProbMakingDone = (props: Props) => {
-  const location = useLocation();
+interface Props {
+  name: string;
+}
+const ProbMakingDone = ({ name }: Props) => {
+  const location = useLocation<{ test: Problem[] }>();
+  const { test } = location.state;
+  const [id, setId] = useState<string>();
+  useEffect(() => {
+    axios
+      .post(`${BACKEND_URL}/tests`, { data: test })
+      .then((response: any) => {
+        console.log(response);
+        setId(response.data.id as string);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [test]);
   return (
     <article className="Desktop">
       <div className="Donetext">
-        2020학년도 {location} 영역 적성평가 출제 완료 하셨습니다.
+        2020학년도 {name} 영역 적성평가 출제 완료 하셨습니다.
         <br />내 링크를 통해 결과를 확인할 수 있습니다.
       </div>
-      <div className="Mylink">내 링크: asldkfjasdlfjalksdjfklasj</div>
+      <div className="Mylink">내 링크: {id}</div>
       <div className="Probdeliver">문제 배포</div>
       <button className="Facebook">페이스북</button>
       <button className="Kakaotalk">카카오톡</button>

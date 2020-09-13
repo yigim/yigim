@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 
 interface Props {
   name: string;
   data: any[];
 }
-const ProbSolveDone = ({ data, name }: Props, { match }) => {
-  const solveId = match.params.solveId;
+const ProbSolveDone = ({ data, name }: Props) => {
+  const { solveId } = useParams<{ solveId: string }>();
   const history = useHistory();
   const [peopleSolved, setPeopleSolved] = useState([]);
   const getRanking = () => {

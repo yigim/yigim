@@ -250,13 +250,30 @@
   font-size: 36px;
 }
 
-.Pseudobutton {
-  background: none;
+.PseudobuttonDefault {
+  background: #f1ebe6;
   width: 52px;
   height: 52px;
   border: 3px solid black;
   font-size: 36px;
 }
+
+.PseudobuttonSelected {
+  background: white;
+  width: 52px;
+  height: 52px;
+  border: 3px solid black;
+  font-size: 36px;
+}
+
+.PseudobuttonUnselected {
+  background: grey;
+  width: 52px;
+  height: 52px;
+  border: 3px solid black;
+  font-size: 36px;
+}
+
 .Pseudobutton:hover {
   opacity: 0.5;
 }
