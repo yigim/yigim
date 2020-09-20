@@ -33,7 +33,7 @@ const ProbMaking = ({ name }: Props) => {
   const [pickedNumber, setPickedNumber] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
-
+ 
   //질문 수정 후 저장하는 함수
   const handleChangeQuestion = (value: string) => {
     setQuestion({ ...question, question: value });
@@ -135,13 +135,16 @@ const ProbMaking = ({ name }: Props) => {
         onSubmit={(e) => {
           e.preventDefault();
           console.log(pickedNumber);
+          console.log(test);
           if (pickedNumber !== null) {
             setLevel(null);
             setQuestion(questions[questionIndex + 1]);
-            setQuestionIndex(questionIndex + 1);
+            setQuestionIndex((questionIndex + 1) % questions.length);
             setPickedNumber(null);
             setTest(test.concat({ ...question, answer: question.examples[pickedNumber] }));
-            if (test.length >= 10) {
+            // 왜인지는 모르겠지만 아래 값이 10이면 11번 문제까지 만들게 돼서 9로 바꿔놨습니다.
+            // console.log로 확인해보니 7문제를 제출했으면 6번 문제까지의 데이터만 저장돼서 이것도 수정이 필요할 것 같습니다.
+            if (test.length >= 9) {
               //축적된 데이터(UserQnALists) 업로드하도록
               history.push('/prob-making-done', {
                 data: test,
@@ -161,7 +164,7 @@ const ProbMaking = ({ name }: Props) => {
                 e.preventDefault();
                 setLevel(null);
                 setQuestion(questions[questionIndex + 1]);
-                setQuestionIndex(questionIndex + 1);
+                setQuestionIndex((questionIndex + 1) % questions.length);
                 setPickedNumber(null);
               }}
               value="이 문제 건너뛰기"

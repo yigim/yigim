@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './probmakingdone.css';
 import { BACKEND_URL, Problem } from '../constants/constants';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 
 interface Props {
   name: string;
@@ -11,6 +11,8 @@ const ProbMakingDone = ({ name }: Props) => {
   const location = useLocation<{ test: Problem[] }>();
   const { test } = location.state;
   const [id, setId] = useState<string>();
+  const history = useHistory();
+  const [scoreData, setScoreData] = useState<Number>();
   useEffect(() => {
     axios
       .post(`${BACKEND_URL}/tests`, { data: test })
@@ -21,6 +23,15 @@ const ProbMakingDone = ({ name }: Props) => {
       .catch((error) => {
         console.log(error);
       });
+    //resultReadList 함수
+    // axios
+    //   .get(`${BACKEND_URL}/tests/` + id + '/results')
+    //   .then((response: any) => {
+    //     console.log(response);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, [test]);
   return (
     <article className="Desktop">
@@ -28,7 +39,7 @@ const ProbMakingDone = ({ name }: Props) => {
         2020학년도 {name} 영역 적성평가 출제 완료 하셨습니다.
         <br />내 링크를 통해 결과를 확인할 수 있습니다.
       </div>
-      <div className="Mylink">내 링크: {id}</div>
+      <div className="Mylink">내 링크: localhost:3000/{id}</div>
       <div className="Probdeliver">문제 배포</div>
       <button className="Facebook">페이스북</button>
       <button className="Kakaotalk">카카오톡</button>
@@ -52,6 +63,7 @@ const ProbMakingDone = ({ name }: Props) => {
         </thead>
         <tbody>
           <tr>
+            <td>{scoreData}</td>
             <td>1</td>
             <td>A</td>
             <td>100</td>
