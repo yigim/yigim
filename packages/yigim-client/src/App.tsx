@@ -40,7 +40,7 @@ const App = () => {
           <PageError />
         </Route>
         <Route exact path="/:solveId?">
-          <Home onTest={setTest} onIsSolve={setIsSolve} />
+          <Home onTest={setTest} onIsSolve={setIsSolve} getName={setName} isSolve={isSolve} />
         </Route>
       </Switch>
     </Router>

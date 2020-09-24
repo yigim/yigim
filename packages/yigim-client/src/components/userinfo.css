@@ -1,228 +1,119 @@
-.Desktop10 {
-  background: #f1ebe6;
-  height: 976px;
-  width: 1439px;
-  margin: 0px;
+.Inputname {
+  display: flex;
+  justify-content: center;
 }
 
-h1 {
-  margin: 0 auto;
-  position: relative;
-  top: 152px;
-  text-align: center;
-
+.Inputname label {
   font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  letter-spacing: 0.13em;
-  color: #000000;
-}
-
-h2 {
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-  top: 277px;
-  font-family: SinGraphic;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 96px;
-  line-height: 110px;
-
-  color: #000000;
-}
-
-.Problemtype {
-  position: relative;
-  left: 1115px;
-  width: fit-content;
-  top: 347px;
-  border: #000000 5px solid;
-  border-radius: 15px;
-  font-family: Gothic A1;
   font-style: normal;
   font-weight: 600;
-  font-size: 40px;
-  line-height: 50px;
-  /* identical to box height */
-
-  letter-spacing: 0.07em;
-  color: #000000;
+  font-size: 4.5vmin;
+  float: left;
 }
-.Inputname1 {
-  position: absolute;
-  width: 143px;
-  height: 68px;
-  left: 450.5px;
-  top: 500px;
 
-  /* Gray 1 */
+.Inputname span {
+  display: table-cell;
+  /* overflow: hidden; */
+  padding: 0 16px 0 20px;
+}
 
-  border: 4px solid #333333;
-
-  text-align: center;
+.Inputname input::placeholder {
   font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  /* identical to box height */
+  font-size: 2.2vmin;
+  font-weight: 600;
 }
-.Inputname2 {
-  position: absolute;
-  width: 392px;
-  height: 66px;
-  left: 597.5px;
-  top: 548px;
+
+.Inputname input {
+  border: 0.3vh solid #333333;
   background: #f1ebe6;
-  /* Gray 1 */
-  font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  border: 4px solid #333333;
-}
-
-.Inputstudentid1 {
-  position: absolute;
-  width: 143px;
-  height: 68px;
-  left: 450.5px;
-  top: 600px;
-
-  /* Gray 1 */
-
-  border: 4px solid #333333;
-
   text-align: center;
+  height: 4vh;
+  width: 25vw;
+  margin-left: 1em;
+  padding: 1;
+}
+
+.Inputstudentid {
+  display: flex;
+  justify-content: center;
+}
+
+.Inputstudentid label {
   font-family: NanumMyeongjo;
   font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  /* identical to box height */
+  font-weight: 600;
+  font-size: 4.5vmin;
+  float: left;
 }
+
+.Inputstudentid span {
+  display: table-cell;
+  /* overflow: ; */
+  padding: 0 16px 0 20px;
+}
+
 .Inputstudentid2 {
-  position: absolute;
-  width: 392px;
-  height: 66px;
-  left: 597.5px;
-  top: 648px;
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-size: 3.5vmin;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  border: 0.3vh solid #333333;
   background: #f1ebe6;
-  /* Gray 1 */
+  text-align: center;
+  height: 4vh;
+  width: 25vw;
+  margin-left: ;
+}
+.Inputgender {
+  display: flex;
+  justify-content: center;
+}
+
+.Inputgender label {
   font-family: NanumMyeongjo;
   font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  /* identical to box height */
-
-  letter-spacing: 0.43em;
-  border: 4px solid #333333;
+  font-weight: 600;
+  font-size: 4.5vmin;
+  float: left;
 }
-.Inputgender1 {
-  position: absolute;
-  width: 143px;
-  height: 68px;
-  left: 450.5px;
-  top: 700px;
 
-  /* Gray 1 */
+.Inputgender span {
+  display: table-cell;
+  overflow: hidden;
+  padding: 0 16px 0 20px;
+}
 
-  border: 4px solid #333333;
-
+.Inputgender input {
+  border: 0.3vh solid #333333;
+  background: #f1ebe6;
   text-align: center;
   font-family: NanumMyeongjo;
   font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  /* identical to box height */
+  font-weight: 600;
+  font-size: 3vmin;
+  height: 4.5vh;
+  width: 13vw;
+  margin-left: 1em;
+  padding: 1;
 }
-.Inputgender2 {
-  position: absolute;
-  width: 202px;
-  height: 76px;
-  left: 597.5px;
-  top: 748px;
-  /* Gray 1 */
-  text-align: center;
-  font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 36px;
-  line-height: 45px;
-  border: 4px solid #333333;
+.Inputgender input:hover {
+  background: gray;
 }
-.Inputgender3 {
-  position: absolute;
-  width: 202px;
-  height: 76px;
-  left: 799.5px;
-  top: 748px;
-  /* Gray 1 */
-  text-align: center;
-  font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 36px;
-  line-height: 45px;
-  border: 4px solid #333333;
-}
+
 .button1 {
-  position: absolute;
-  width: 202px;
-  height: 40px;
-  left: 450.5px;
-  top: 850px;
-  /* Gray 1 */
-  text-align: center;
-  font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 20px;
-  line-height: 45px;
-  border: 4px solid #333333;
-}
-.button2 {
-  position: absolute;
-  width: 202px;
-  height: 40px;
-  left: 799.5px;
-  top: 850px;
-  /* Gray 1 */
-  text-align: center;
-  font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 20px;
-  line-height: 45px;
-  border: 4px solid #333333;
-}
-.Caution {
-  position: absolute;
-  width: 850px;
-  height: 61px;
-  left: 294.5px;
-  top: 876px;
-
+  border-radius: 0.5rem;
+  border: #d9d9d9;
   background: #d9d9d9;
-
-  text-align: center;
   font-family: NanumMyeongjo;
   font-style: normal;
   font-weight: 800;
-  font-size: 35px;
-  line-height: 44px;
+  font-size: 4vmin;
+  line-height: 150%;
   /* identical to box height */
 
   letter-spacing: 0.07em;
-  /* identical to box height */
-
-  letter-spacing: 0.07em;
-
+  margin-bottom: 1.5em;
+  margin-top: 0.5em;
   color: #000000;
 }

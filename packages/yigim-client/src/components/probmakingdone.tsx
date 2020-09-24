@@ -15,7 +15,7 @@ const ProbMakingDone = ({ name }: Props) => {
   const [scoreData, setScoreData] = useState<Number>();
   useEffect(() => {
     httpClient
-      .post<{ test: { id: string } }>(`/tests`, test)
+      .post<{ test: { id: string } }>(`/tests`, { test })
       .then((response) => {
         setId(response.data.test.id);
       })
