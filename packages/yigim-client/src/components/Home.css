@@ -1,123 +1,101 @@
-.Desktop13 {
+.Home_Container {
   background: #f1ebe6;
-  height: 976px;
-  width: 1439px;
-  margin: 0px;
+  width: 100%;
+  margin: 0px auto;
+  max-height: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1300px;
 }
 
-h1 {
-  margin: 0 auto;
-  position: relative;
-  top: 152px;
-  text-align: center;
+.Header_Container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 50vh;
+  flex-direction: column;
+  margin-top: 10vmin;
+}
 
+.Bottom_Container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 3em;
+}
+
+.Sub_title {
+  margin-bottom: 8vh;
+  text-align: center;
   font-family: NanumMyeongjo;
   font-style: normal;
-  font-weight: 800;
-  font-size: 48px;
-  line-height: 60px;
-  letter-spacing: 0.13em;
+  font-weight: 1000;
+  font-size: 5vmin;
+  line-height: 200%;
+  letter-spacing: 0.16em;
   color: #000000;
 }
 
-h2 {
-  margin: 0 auto;
-  position: relative;
-  text-align: center;
-  top: 277px;
+.Main_title {
   font-family: SinGraphic;
   font-style: normal;
   font-weight: normal;
-  font-size: 96px;
-  line-height: 110px;
-
+  font-size: 12vmin;
+  line-height: 150%; /*150%랑 같이 해봐서 결정하기!*/
   color: #000000;
 }
 
 .Problemtype {
-  position: relative;
-  left: 1115px;
-  width: fit-content;
-  top: 347px;
-  border: #000000 5px solid;
-  border-radius: 15px;
+  /* margin-top: 0.1vmin; */
+  width: 20%;
+  text-align: center;
+  align-self: flex-end;
+  margin-inline-end: 1%;
+  border: #000000 0.3vh solid;
+  border-radius: 0.5rem;
   font-family: Gothic A1;
   font-style: normal;
   font-weight: 600;
-  font-size: 40px;
-  line-height: 50px;
+  font-size: 5vmin;
+  line-height: 180%;
+
   /* identical to box height */
-
   letter-spacing: 0.07em;
-  color: #000000;
-}
-
-.Problemsolvestart {
-  position: absolute;
-  height: 63px;
-  width: 563px;
-  left: 440px;
-  top: 597px;
-
-  border-radius: 20px;
-  border: #d9d9d9;
-  background: #d9d9d9;
-  text-align: center;
-  font-family: NanumMyeongjo;
-  font-style: normal;
-  font-weight: 800;
-  font-size: 50px;
-  line-height: 62px;
-  /* identical to box height */
-
-  letter-spacing: 0.07em;
-
   color: #000000;
 }
 
 .Problemmakestart {
-  position: absolute;
-  height: 63px;
-  width: 563px;
-  left: 440px;
-  top: 700px;
-
-  border-radius: 20px;
+  margin-bottom: 10vh;
+  border-radius: 0.5rem;
   border: #d9d9d9;
   background: #d9d9d9;
-  text-align: center;
   font-family: NanumMyeongjo;
   font-style: normal;
   font-weight: 800;
-  font-size: 50px;
-  line-height: 62px;
+  font-size: 8vmin;
+  line-height: 150%;
   /* identical to box height */
-
   letter-spacing: 0.07em;
 
   color: #000000;
 }
+
 .Caution {
-  position: absolute;
-  width: 850px;
-  height: 61px;
-  left: 294.5px;
-  top: 876px;
-
   background: #d9d9d9;
-
-  text-align: center;
+  /* text-align: center; */
   font-family: NanumMyeongjo;
   font-style: normal;
   font-weight: 800;
-  font-size: 35px;
-  line-height: 44px;
+  font-size: 4vmin;
+  line-height: 200%;
   /* identical to box height */
 
   letter-spacing: 0.07em;
   /* identical to box height */
-
-  letter-spacing: 0.07em;
-
   color: #000000;
+  /* margin-top: px; */
 }

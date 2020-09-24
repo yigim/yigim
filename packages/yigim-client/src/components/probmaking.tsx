@@ -33,7 +33,7 @@ const ProbMaking = ({ name }: Props) => {
   const [pickedNumber, setPickedNumber] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
- 
+
   //질문 수정 후 저장하는 함수
   const handleChangeQuestion = (value: string) => {
     setQuestion({ ...question, question: value });
@@ -121,142 +121,151 @@ const ProbMaking = ({ name }: Props) => {
     </div>
   );
   return (
-    <article className="Desktop">
-      <div className="Problemheader">
-        <h1 className="Problemtype_">
+    <div className="Home_Container">
+      <div className="Problem_Header_Container">
+        <div className="Sub_title_header">
           2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
-        </h1>
-        <h2 className="Problemtitle">{name} 영역</h2>
-        <p className="Period">제 1교시</p>
-        <p className="Nametag">성명</p>
-        <p className="Name">{name}</p>
+        </div>
+        <div className="Main_title_header">{name} 영역</div>
+        <div className="Info_Container">
+          <div className="Period">제 1교시</div>
+          <div className="Nametag">성명</div>
+          <div className="Name">{name}</div>
+        </div>
       </div>
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          console.log(pickedNumber);
-          console.log(test);
-          if (pickedNumber !== null) {
-            setLevel(null);
-            setQuestion(questions[questionIndex + 1]);
-            setQuestionIndex((questionIndex + 1) % questions.length);
-            setPickedNumber(null);
-            setTest(test.concat({ ...question, answer: question.examples[pickedNumber] }));
-            // 왜인지는 모르겠지만 아래 값이 10이면 11번 문제까지 만들게 돼서 9로 바꿔놨습니다.
-            // console.log로 확인해보니 7문제를 제출했으면 6번 문제까지의 데이터만 저장돼서 이것도 수정이 필요할 것 같습니다.
-            if (test.length >= 9) {
-              //축적된 데이터(UserQnALists) 업로드하도록
-              history.push('/prob-making-done', {
-                data: test,
-              });
-            }
-          } else {
-            alert('nothing selected');
-          }
-        }}
-      >
-        <div className="Problem">
-          {mode === Mode.basic ? (
-            <input
-              type="button"
-              className="Anotherquestion"
-              onClick={(e) => {
-                e.preventDefault();
+      <div className="Problem_Bottom_Container">
+        <div className="Bottom1">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              console.log(pickedNumber);
+              console.log(test);
+              if (pickedNumber !== null) {
                 setLevel(null);
                 setQuestion(questions[questionIndex + 1]);
                 setQuestionIndex((questionIndex + 1) % questions.length);
                 setPickedNumber(null);
-              }}
-              value="이 문제 건너뛰기"
-            ></input>
-          ) : (
-            ''
-          )}
-          {test.length + 1}.
-          {mode === Mode.basic ? (
-            question.question
-          ) : (
-            <input
-              className="Modifyproblem"
-              type="text"
-              value={question.question}
-              onChange={(e) => handleChangeQuestion(e.target.value)}
-            ></input>
-          )}
-        </div>
-        <div className="Choice">
-          <ol>
-            {problevel}
-            {mode === Mode.basic
-              ? question.examples.map((value, index) => (
-                  <div>
-                    <button
-                      id={`button${index}`}
-                      className="Buttonselect"
-                      type="button"
-                      onClick={() => {
-                        setPickedNumber(index);
-                      }}
-                    >
-                      {getCircleNumber(index) + value}
-                      <div
-                        className={pickedNumber === index ? 'Checkani' : 'Checkdiv'}
-                        id={`Checkdiv${index}`}
-                      >
-                        <img className="Checksign" src={Checksign} alt="checksign" />
-                      </div>
-                    </button>
-                    <input id={'checkbox' + index} type="checkbox" className="Checkbox"></input>
-                  </div>
-                ))
-              : question.examples.map((value, index) => (
-                  <div>
-                    {getCircleNumber(index)}
-                    <input
-                      className="Modifychoice"
-                      type="text"
-                      id={String(index)}
-                      value={value}
-                      onChange={(e) => {
-                        handleChangeExamples(
-                          question.examples.map((example, index2) =>
-                            index2 === index ? e.target.value : example,
-                          ),
-                        );
-                      }}
-                    ></input>
-                  </div>
-                ))}
-            <input
-              className="Modify"
-              id="modechange"
-              type="button"
-              value={mention}
-              onClick={(e) => {
-                if (mode === Mode.basic) {
-                  setMode(Mode.modify);
-                  setMention('수정 완료');
-                } else {
-                  setMode(Mode.basic);
-                  setMention('수정하기');
+                setTest(test.concat({ ...question, answer: question.examples[pickedNumber] }));
+                // 왜인지는 모르겠지만 아래 값이 10이면 11번 문제까지 만들게 돼서 9로 바꿔놨습니다.
+                // console.log로 확인해보니 7문제를 제출했으면 6번 문제까지의 데이터만 저장돼서 이것도 수정이 필요할 것 같습니다.
+                if (test.length >= 9) {
+                  //축적된 데이터(UserQnALists) 업로드하도록
+                  history.push('/prob-making-done', {
+                    data: test,
+                  });
                 }
-              }}
-            />
-            {mode === Mode.basic ? (
+              } else {
+                alert('nothing selected');
+              }
+            }}
+          >
+            <div className="Problem">
+              {test.length + 1}.
+              {mode === Mode.basic ? (
+                question.question
+              ) : (
+                <input
+                  className="Modifyproblem"
+                  type="text"
+                  value={question.question}
+                  onChange={(e) => handleChangeQuestion(e.target.value)}
+                ></input>
+              )}
+            </div>
+            <div className="Choice">
+              {problevel}
+              {mode === Mode.basic
+                ? question.examples.map((value, index) => (
+                    <div>
+                      <button
+                        id={`button${index}`}
+                        className="Buttonselect"
+                        type="button"
+                        onClick={() => {
+                          setPickedNumber(index);
+                        }}
+                      >
+                        <div
+                          className={pickedNumber === index ? 'Checkani' : 'Checkdiv'}
+                          id={`Checkdiv${index}`}
+                        >
+                          <img className="Checksign" src={Checksign} alt="checksign" />
+                        </div>
+                        <div
+                          className={pickedNumber === index ? 'Answerani' : 'Answer'}
+                          id="Answer3"
+                        >
+                          {getCircleNumber(index) + value}
+                        </div>
+                      </button>
+                      <input id={'checkbox' + index} type="checkbox" className="Checkbox"></input>
+                    </div>
+                  ))
+                : question.examples.map((value, index) => (
+                    <div>
+                      {getCircleNumber(index)}
+                      <input
+                        className="Modifychoice"
+                        type="text"
+                        id={String(index)}
+                        value={value}
+                        onChange={(e) => {
+                          handleChangeExamples(
+                            question.examples.map((example, index2) =>
+                              index2 === index ? e.target.value : example,
+                            ),
+                          );
+                        }}
+                      ></input>
+                    </div>
+                  ))}
               <input
-                className="Submit"
-                id="next"
-                type="submit"
-                value={test.length === 9 ? '제출하기' : '다음문제'}
-              ></input>
-            ) : (
-              ''
-            )}
-          </ol>
+                className="Modify"
+                id="modechange"
+                type="button"
+                value={mention}
+                onClick={(e) => {
+                  if (mode === Mode.basic) {
+                    setMode(Mode.modify);
+                    setMention('수정 완료');
+                  } else {
+                    setMode(Mode.basic);
+                    setMention('수정하기');
+                  }
+                }}
+              />
+              {mode === Mode.basic ? (
+                <input
+                  className="Submit"
+                  id="next"
+                  type="submit"
+                  value={test.length === 9 ? '제출하기' : '다음문제'}
+                ></input>
+              ) : (
+                ''
+              )}
+            </div>
+          </form>
+          <div className="Pagenumber">-{test.length + 1}-</div>
         </div>
-      </form>
-      <div className="Pagenumber">-{test.length + 1}-</div>
-    </article>
+        {mode === Mode.basic ? (
+          <input
+            type="button"
+            className="Anotherquestion"
+            onClick={(e) => {
+              e.preventDefault();
+              setLevel(null);
+              setQuestion(questions[questionIndex + 1]);
+              setQuestionIndex((questionIndex + 1) % questions.length);
+              setPickedNumber(null);
+            }}
+            value="이 문제 건너뛰기"
+          ></input>
+        ) : (
+          ''
+        )}
+      </div>
+    </div>
   );
 };
 
