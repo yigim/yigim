@@ -1,6 +1,13 @@
 {
   "plugins": ["@typescript-eslint", "prettier", "no-async-foreach"],
-  "extends": ["airbnb-typescript", "react-app", "prettier"],
+  "extends": [
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "react-app",
+    "prettier"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./tsconfig.json"
@@ -13,9 +20,10 @@
     }
   },
   "rules": {
-    // "no-async-foreach/no-async-foreach": 2
+    "no-async-foreach/no-async-foreach": 2,
     "no-plusplus": "off",
     "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unsafe-assignment": 0,
     "import/prefer-default-export": "off",
     "max-len": [
       "warn",
