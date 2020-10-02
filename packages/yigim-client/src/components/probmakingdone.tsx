@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import './probmakingdone.css';
-import { Problem } from '../constants/constants';
 import { useLocation, useHistory } from 'react-router-dom';
 import { httpClient } from '../helpers/httpClient';
+import { Problem } from '../types/models';
 
 interface Props {
   name: string;

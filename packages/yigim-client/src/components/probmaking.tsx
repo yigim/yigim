@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import './probmaking.css';
 import { useHistory } from 'react-router-dom';
-import { DefaultQuestions, Problem } from '../constants/constants';
+import { DefaultQuestions } from '../constants/constants';
 import { getCircleNumber } from '../helpers/getCircleNumber';
+import { Problem } from '../types/models';
 
 //typescript image import 방식
 const Checksign = require('../images/checksign.png');

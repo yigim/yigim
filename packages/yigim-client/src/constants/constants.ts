@@ -1,17 +1,7 @@
-export type Question = {
-  question: string;
-  examples: string[];
-  score: number;
-};
+import { Question } from '../types/models';
 
-export type Problem = {
-  question: string;
-  examples: string[];
-  answer: string;
-  score: number;
-};
-
-export const BACKEND_URL = 'https://2y0mfq1cmc.execute-api.ap-northeast-2.amazonaws.com/prod';
+export const BACKEND_URL = 'http://localhost:9000/dev';
+// 'https://2y0mfq1cmc.execute-api.ap-northeast-2.amazonaws.com/prod';
 
 export const DefaultQuestions = (name: string): Question[] => [
   {

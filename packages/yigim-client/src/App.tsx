@@ -8,7 +8,7 @@ import ProbSolving from './components/probsolving';
 import ProbSolveDone from './components/probsolvedone';
 import PageError from './components/pageerror';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Problem } from './constants/constants';
+import { Problem } from './types/models';
 
 const App = () => {
   const [name, setName] = useState('');

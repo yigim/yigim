@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import './Home.css';
-import { Problem } from '../constants/constants';
 import { httpClient } from '../helpers/httpClient';
+import { Problem } from '../types/models';
 type Props = {
   onTest: (test: Problem[]) => void;
   onIsSolve: (isSolve: boolean) => void;
