@@ -3,7 +3,7 @@ import { Document } from 'dynamoose/dist/Document';
 
 export interface ITest extends Document {
   id: string;
-  data: Object[];
+  data: Record<string, unknown>[];
 }
 const schema = new Schema(
   {

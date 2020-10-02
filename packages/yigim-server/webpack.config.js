@@ -6,10 +6,11 @@ const nodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 console.log(slsw.lib.entries);
+const { isLocal } = slsw.lib.webpack;
 
 module.exports = {
   context: __dirname,
-  mode: slsw.lib.webpack.isLocal ? 'development' : 'production',
+  mode: isLocal ? 'development' : 'production',
   entry: slsw.lib.entries,
   devtool: 'source-map',
   // devtool: slsw.lib.webpack.isLocal ? 'cheap-module-eval-source-map' : 'source-map',
@@ -29,6 +30,9 @@ module.exports = {
     libraryTarget: 'commonjs',
     path: path.join(__dirname, '.webpack'),
     filename: '[name].js',
+    devtoolModuleFilenameTemplate: isLocal
+      ? path.join(__dirname, '[resource-path]')
+      : '../../[resource-path]',
   },
   target: 'node',
   externals: [nodeExternals()],

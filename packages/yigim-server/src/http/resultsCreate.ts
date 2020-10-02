@@ -1,51 +1,28 @@
-import { APIGatewayProxyHandler } from 'aws-lambda';
 import dynamoose from 'dynamoose';
 import { ResultModel } from '../models/Result';
 import { TestModel } from '../models/Test';
 import { STAGE } from '../constants';
+import { middleware } from './middleware';
+import { badReqeust, notFound, ok } from '../utils/generateResponses';
 
 if (STAGE === 'dev') dynamoose.aws.ddb.local();
 
-export const handler: APIGatewayProxyHandler = async (event, _context) => {
-  const { id, data } = JSON.parse(event.body!);
-  const { testId } = event.pathParameters!;
+export const handler = middleware(async (event) => {
+  const { id, data } = event.bodyParameters as {
+    id: string;
+    data: Record<string, unknown>[];
+  };
+  const { testId } = event.pathParameters;
 
-  if (!id || !data) {
-    return {
-      statusCode: 400,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: 'Bad Request: id or data are undefined inrequest body',
-    };
-  }
+  if (!id || !data)
+    return badReqeust('Invalid body parameters', event.bodyParameters);
 
-  if (!testId) {
-    return {
-      statusCode: 400,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: 'Bad Request: testId is undefined in path parameters',
-    };
-  }
+  if (!testId)
+    return badReqeust('Invalid path parameters', event.pathParameters);
 
   const test = await TestModel.get(testId);
-  if (!test)
-    return {
-      statusCode: 404,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: 'Not found: test',
-    };
+  if (!test) return notFound('Test not found');
 
   const result = await ResultModel.create({ testId, id, data });
-  return {
-    statusCode: 200,
-    Headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    body: JSON.stringify(result),
-  };
-};
+  return ok('result', result);
+});

@@ -1,38 +1,20 @@
-import { APIGatewayProxyHandler } from 'aws-lambda';
 import dynamoose from 'dynamoose';
 import { TestModel } from '../models/Test';
 import { STAGE } from '../constants';
+import { badReqeust, notFound, ok } from '../utils/generateResponses';
+import { middleware } from './middleware';
 
 if (STAGE === 'dev') dynamoose.aws.ddb.local();
 
-export const handler: APIGatewayProxyHandler = async (event, _context) => {
-  const { testId } = event.pathParameters!;
+export const handler = middleware(async (event) => {
+  const { testId } = event.pathParameters;
 
-  if (!testId) {
-    return {
-      statusCode: 400,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: 'Bad Request: testId is undefined in path parameters',
-    };
-  }
+  if (!testId)
+    return badReqeust('Invalid path parameters', event.pathParameters);
+
   const test = await TestModel.get(testId);
 
-  if (!test)
-    return {
-      statusCode: 404,
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-      body: 'Not found: test',
-    };
+  if (!test) return notFound('Test not found');
 
-  return {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-    },
-    body: JSON.stringify(test),
-  };
-};
+  return ok('test', test);
+});

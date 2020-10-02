@@ -4,7 +4,7 @@ import { Document } from 'dynamoose/dist/Document';
 export interface IResult extends Document {
   id: string;
   testId: string;
-  data: Object[];
+  data: Record<string, unknown>[];
 }
 const schema = new Schema(
   {

@@ -15,7 +15,7 @@
     "serverless": "^1.76.1",
     "serverless-domain-manager": "^4.2.0",
     "serverless-dynamodb-local": "^0.2.39",
-    "serverless-offline": "^6.5.0",
+    "serverless-offline": "6.6.0",
     "serverless-prune-plugin": "^1.4.3",
     "serverless-webpack": "^5.3.4",
     "ts-loader": "^8.0.1",
