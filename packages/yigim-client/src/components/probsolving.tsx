@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import './probsolving.css';
 import { useHistory, useParams } from 'react-router-dom';
-import { Problem } from '../constants/constants';
 import { getCircleNumber } from '../helpers/getCircleNumber';
+import { Problem } from '../types/models';
 
 interface Props {
   functionData: (userData: any[]) => void;
@@ -11,6 +11,11 @@ interface Props {
 }
 const Osign = require('../images/Osign.png');
 const Xsign = require('../images/xsign.png');
+enum Result {
+  NotAnswered,
+  Right,
+  Wrong,
+}
 const ProbSolving = ({ functionData, test }: Props) => {
   const history = useHistory();
   const solveId = useParams();
@@ -18,57 +23,48 @@ const ProbSolving = ({ functionData, test }: Props) => {
   const [chosenNubmer, setChosenNumber] = useState(0);
   const [scoreTotal, setScoreTotal] = useState(0);
   const [scoreUser, setScoreUser] = useState(0);
-  const [result, setResult] = useState('default');
+  const [result, setResult] = useState<Result>(Result.NotAnswered);
   const [userName, setUserName] = useState('길동홍');
 
   //정답이 맞는 함수
-  const rightAnswer = () => {
-    setResult('right');
+  const pickRightAnswer = () => {
+    setResult(Result.Right);
     setScoreTotal(scoreTotal + test[probNumber].score);
     setScoreUser(scoreUser + test[probNumber].score);
   };
   //정답이 틀리는 함수
-  const wrongAnswer = () => {
-    setResult('wrong');
+  const pickWrongAnswer = () => {
+    setResult(Result.Wrong);
     setScoreTotal(scoreTotal + test[probNumber].score);
   };
+  console.log('hihihihihi');
+  console.log(test);
   const problem = test[probNumber];
   const question = probNumber + '. ' + problem.question;
-  problem.examples.map((example, index) => (
-    <div>
-      <button
-        type="button"
-        className="Buttonselect"
-        id={String(index)}
-        onClick={(e) => {
-          if (problem.answer === example) {
-            rightAnswer();
-          } else {
-            wrongAnswer();
-          }
-          setChosenNumber(0);
-        }}
-      >
-        {getCircleNumber(index)} {example}
-      </button>
-    </div>
-  ));
   //const getcirclenumber constants.ts로 이식하는 작업 해보기
-  const stringExamples = problem.examples.map((value, index) => (
-    <div>
-      {getCircleNumber(index)} {value}
-    </div>
-  ));
-  const sign =
-    result === 'right' ? (
-      <div className="Oani">
-        <img className="Osign" src={Osign} alt="osign" />
-      </div>
-    ) : (
-      <div className="Xani">
-        <img className="Xsign" src={Xsign} alt="xsign" />
-      </div>
-    );
+
+  const sign = (() => {
+    switch (result) {
+      case Result.Right: {
+        return (
+          <div className="Oani">
+            <img className="Osign" src={Osign} alt="osign" />
+          </div>
+        );
+      }
+      case Result.Wrong: {
+        return (
+          <div className="Xani">
+            <img className="Xsign" src={Xsign} alt="xsign" />
+          </div>
+        );
+      }
+      case Result.NotAnswered: {
+        return '';
+      }
+    }
+  })();
+
   return (
     <div>
       <article className="Desktop">
@@ -85,19 +81,42 @@ const ProbSolving = ({ functionData, test }: Props) => {
         {sign}
         <div className="Problem">{question}</div>
         <div className="Choice">
-          <ol>{result === 'default' ? problem.examples : stringExamples}</ol>
+          <ol>
+            {problem.examples.map((example, index) => (
+              <div>
+                {result === Result.NotAnswered ? (
+                  <button
+                    type="button"
+                    className="Buttonselect"
+                    id={String(index)}
+                    onClick={(e) => {
+                      if (problem.answer === example) {
+                        pickRightAnswer();
+                      } else {
+                        pickWrongAnswer();
+                      }
+                      setChosenNumber(0);
+                    }}
+                  >
+                    {getCircleNumber(index)} {example}
+                  </button>
+                ) : (
+                  `${getCircleNumber(index)} ${example}`
+                )}
+              </div>
+            ))}
+          </ol>
         </div>
         <form
           onClick={(e) => {
             e.preventDefault();
-            if (probNumber !== 10) {
+            if (probNumber < test.length - 1) {
               setProbNumber(probNumber + 1);
-              console.log(probNumber);
-              setResult('default');
+              setResult(Result.NotAnswered);
             } else {
               e.preventDefault();
               functionData([scoreUser, scoreTotal]);
-              history.push('/prob-solve-done/' + solveId);
+              history.push('/prob-solve-done/' + solveId, {});
             }
           }}
         >

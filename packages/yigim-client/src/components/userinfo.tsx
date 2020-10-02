@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { NavLink, useParams, useHistory } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import './userinfo.css';
 
 interface Props {
