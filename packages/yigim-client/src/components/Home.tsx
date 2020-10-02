@@ -16,9 +16,7 @@ const Home = ({ onTest, onIsSolve }: Props) => {
       httpClient
         .get(`/tests/${solveId}`)
         .then((response) => {
-          console.log(response);
-          //handle success
-          onTest(response.data.test);
+          onTest(response.data.test.data);
           onIsSolve(true);
         })
         .catch((error) => {

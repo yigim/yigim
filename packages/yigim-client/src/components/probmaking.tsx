@@ -140,7 +140,7 @@ const ProbMaking = ({ name }: Props) => {
             if (test.length >= 9) {
               //축적된 데이터(UserQnALists) 업로드하도록
               history.push('/prob-making-done', {
-                data: test,
+                test,
               });
             }
           } else {
