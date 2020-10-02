@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './probsolving.css';
 import { useHistory, useParams } from 'react-router-dom';
 import { Problem } from '../constants/constants';
+import { getCircleNumber } from '../helpers/getCircleNumber';
 
 interface Props {
   functionData: (userData: any[]) => void;
@@ -10,18 +11,6 @@ interface Props {
 }
 const Osign = require('../images/Osign.png');
 const Xsign = require('../images/xsign.png');
-const getCircleNumber = (index: number) => {
-  switch (index) {
-    case 0:
-      return `①`;
-    case 1:
-      return `②`;
-    case 2:
-      return `③`;
-    default:
-      return `④`;
-  }
-};
 const ProbSolving = ({ functionData, test }: Props) => {
   const history = useHistory();
   const solveId = useParams();

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './probmaking.css';
 import { useHistory } from 'react-router-dom';
 import { DefaultQuestions, Problem } from '../constants/constants';
+import { getCircleNumber } from '../helpers/getCircleNumber';
 
 //typescript image import 방식
 const Checksign = require('../images/checksign.png');
@@ -33,7 +34,7 @@ const ProbMaking = ({ name }: Props) => {
   const [pickedNumber, setPickedNumber] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
- 
+
   //질문 수정 후 저장하는 함수
   const handleChangeQuestion = (value: string) => {
     setQuestion({ ...question, question: value });
@@ -47,19 +48,6 @@ const ProbMaking = ({ name }: Props) => {
   //난이도 수정하는 함수
   const handleChangeScore = (value: number) => {
     setQuestion({ ...question, score: value });
-  };
-
-  const getCircleNumber = (index: number) => {
-    switch (index) {
-      case 0:
-        return `①`;
-      case 1:
-        return `②`;
-      case 2:
-        return `③`;
-      default:
-        return `④`;
-    }
   };
 
   //문제 난이도
