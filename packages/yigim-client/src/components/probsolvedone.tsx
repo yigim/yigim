@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useHistory, useParams } from 'react-router-dom';
+import { httpClient } from '../helpers/httpClient';
 
 interface Props {
   name: string;
@@ -11,7 +11,7 @@ const ProbSolveDone = ({ data, name }: Props) => {
   const history = useHistory();
   const [peopleSolved, setPeopleSolved] = useState([]);
   const getRanking = () => {
-    axios
+    httpClient
       .get('http://localhost:3000/' + solveId)
       .then((response: any) => {
         setPeopleSolved(response);

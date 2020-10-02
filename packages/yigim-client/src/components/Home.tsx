@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
 import { NavLink, useHistory, useParams } from 'react-router-dom';
 import './Home.css';
-import { BACKEND_URL, Problem } from '../constants/constants';
+import { Problem } from '../constants/constants';
+import { httpClient } from '../helpers/httpClient';
 type Props = {
   onTest: (test: Problem[]) => void;
   onIsSolve: (isSolve: boolean) => void;
@@ -13,8 +13,8 @@ const Home = ({ onTest, onIsSolve }: Props) => {
 
   useEffect(() => {
     if (solveId) {
-      axios
-        .get(`${BACKEND_URL}/tests/${solveId}`)
+      httpClient
+        .get(`/tests/${solveId}`)
         .then((response) => {
           console.log(response);
           //handle success

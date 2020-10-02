@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
 import './probmakingdone.css';
-import { BACKEND_URL, Problem } from '../constants/constants';
+import { Problem } from '../constants/constants';
 import { useLocation, useHistory } from 'react-router-dom';
+import { httpClient } from '../helpers/httpClient';
 
 interface Props {
   name: string;
@@ -14,11 +14,10 @@ const ProbMakingDone = ({ name }: Props) => {
   const history = useHistory();
   const [scoreData, setScoreData] = useState<Number>();
   useEffect(() => {
-    axios
-      .post(`${BACKEND_URL}/tests`, { data: test })
-      .then((response: any) => {
-        console.log(response);
-        setId(response.data.id as string);
+    httpClient
+      .post<{ test: { id: string } }>(`/tests`, test)
+      .then((response) => {
+        setId(response.data.test.id);
       })
       .catch((error) => {
         console.log(error);

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './probsolving.css';
 import { useHistory, useParams } from 'react-router-dom';
 import { Problem } from '../constants/constants';
-import axios from 'axios';
 
 interface Props {
   functionData: (userData: any[]) => void;

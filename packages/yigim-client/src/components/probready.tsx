@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './probready.css';
-import axios from 'axios';
-import { useHistory, useParams } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
   name: string;
