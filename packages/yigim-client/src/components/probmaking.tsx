@@ -141,7 +141,12 @@ const ProbMaking = ({ name }: Props) => {
             setQuestion(questions[questionIndex + 1]);
             setQuestionIndex((questionIndex + 1) % questions.length);
             setPickedNumber(null);
-            setTest(test.concat({ ...question, answer: question.examples[pickedNumber] }));
+            setTest(
+              test.concat({
+                ...question,
+                answer: question.examples[pickedNumber],
+              }),
+            );
             // 왜인지는 모르겠지만 아래 값이 10이면 11번 문제까지 만들게 돼서 9로 바꿔놨습니다.
             // console.log로 확인해보니 7문제를 제출했으면 6번 문제까지의 데이터만 저장돼서 이것도 수정이 필요할 것 같습니다.
             if (test.length >= 9) {
@@ -200,13 +205,23 @@ const ProbMaking = ({ name }: Props) => {
                     >
                       {getCircleNumber(index) + value}
                       <div
-                        className={pickedNumber === index ? 'Checkani' : 'Checkdiv'}
+                        className={
+                          pickedNumber === index ? 'Checkani' : 'Checkdiv'
+                        }
                         id={`Checkdiv${index}`}
                       >
-                        <img className="Checksign" src={Checksign} alt="checksign" />
+                        <img
+                          className="Checksign"
+                          src={Checksign}
+                          alt="checksign"
+                        />
                       </div>
                     </button>
-                    <input id={'checkbox' + index} type="checkbox" className="Checkbox"></input>
+                    <input
+                      id={'checkbox' + index}
+                      type="checkbox"
+                      className="Checkbox"
+                    ></input>
                   </div>
                 ))
               : question.examples.map((value, index) => (

@@ -40,7 +40,9 @@ const UserInfo = ({ getName, isSolve }: Props) => {
           <p className="Inputgender1">성별</p>
           <input type="button" className="Inputgender2" value="남자"></input>
           <input type="button" className="Inputgender3" value="여자"></input>
-          <p className="Caution">※시험이 시작되기 전까지 표지를 넘기지 마시오.</p>
+          <p className="Caution">
+            ※시험이 시작되기 전까지 표지를 넘기지 마시오.
+          </p>
           <input
             type="submit"
             className="button1"
