@@ -1,7 +1,7 @@
 import dynamoose from 'dynamoose';
 import { TestModel } from '../models/Test';
 import { STAGE } from '../constants';
-import { badReqeust, notFound, ok } from '../utils/generateResponses';
+import { badRequest, notFound, ok } from '../utils/generateResponses';
 import { middleware } from './middleware';
 
 if (STAGE === 'dev') dynamoose.aws.ddb.local();
@@ -10,7 +10,7 @@ export const handler = middleware(async (event) => {
   const { testId } = event.pathParameters;
 
   if (!testId)
-    return badReqeust('Invalid path parameters', event.pathParameters);
+    return badRequest('Invalid path parameters', event.pathParameters);
 
   const test = await TestModel.get(testId);
 

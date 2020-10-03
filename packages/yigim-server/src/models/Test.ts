@@ -7,7 +7,7 @@ export interface ITest extends Document {
 }
 const schema = new Schema(
   {
-    id: String,
+    id: { type: String, hashKey: true },
     data: { type: Array },
   },
   { saveUnknown: ['data.**'] },

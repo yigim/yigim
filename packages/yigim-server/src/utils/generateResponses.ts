@@ -8,7 +8,7 @@ export const ok = (dataKey: string, data: unknown): APIGatewayProxyResult => ({
   body: JSON.stringify({ [dataKey]: data }),
 });
 
-export const badReqeust = (
+export const badRequest = (
   message: string,
   details?: Record<string, unknown>,
 ): APIGatewayProxyResult => ({

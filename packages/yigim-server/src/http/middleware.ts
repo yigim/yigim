@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyHandler } from 'aws-lambda';
-import { badReqeust } from '../utils/generateResponses';
+import { badRequest } from '../utils/generateResponses';
 
 export type Handler = (
   event: Omit<APIGatewayProxyEvent, 'pathParameters'> & {
@@ -16,7 +16,7 @@ export const middleware = (handler: Handler): APIGatewayProxyHandler => {
     try {
       if (event.body) bodyParameters = JSON.parse(event.body);
     } catch (e) {
-      return badReqeust('InvalidJsonRequestBody');
+      return badRequest('InvalidJsonRequestBody');
     }
     const pathParameters = event.pathParameters ?? {};
     return handler({
