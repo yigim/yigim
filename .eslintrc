@@ -22,7 +22,10 @@
   "rules": {
     "no-async-foreach/no-async-foreach": 2,
     "no-plusplus": "off",
-    "@typescript-eslint/no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_" }
+    ],
     "@typescript-eslint/no-unsafe-assignment": 0,
     "import/prefer-default-export": "off",
     "max-len": [

@@ -3,6 +3,8 @@ import './probmakingdone.css';
 import { useLocation, useHistory } from 'react-router-dom';
 import { httpClient } from '../helpers/httpClient';
 import { Problem } from '../types/models';
+import { Popover } from '@material-ui/core';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 interface Props {
   name: string;
@@ -13,6 +15,9 @@ const ProbMakingDone = ({ name }: Props) => {
   const [id, setId] = useState<string>();
   const history = useHistory();
   const [scoreData, setScoreData] = useState<Number>();
+  const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
+    null,
+  );
   useEffect(() => {
     httpClient
       .post<{ test: { id: string } }>(`/tests`, { test })
@@ -45,7 +50,25 @@ const ProbMakingDone = ({ name }: Props) => {
           <button className="Facebook">페이스북</button>
           <button className="Kakaotalk">카카오톡</button>
           <button className="Instagram">인스타그램</button>
-          <button className="URLcopy">URL복사</button>
+          <div>
+            <CopyToClipboard text={`localhost:3000/${id}`}>
+              <button
+                className="URLcopy"
+                onClick={(event) => {
+                  setAnchorEl(event.currentTarget);
+                }}
+              >
+                URL복사
+              </button>
+            </CopyToClipboard>
+            <Popover
+              open={!!anchorEl}
+              anchorEl={anchorEl}
+              onClose={() => setAnchorEl(null)}
+            >
+              링크가 클립보드에 복사되었습니다.
+            </Popover>
+          </div>
           <div className="Border"></div>
           <div className="Scoretitle">우수 응시자 성적 공개</div>
           <table className="Scoretable">
@@ -61,10 +84,10 @@ const ProbMakingDone = ({ name }: Props) => {
                   <span>점수</span>
                 </th>
               </tr>
+              <td>{scoreData}</td>
             </thead>
             <tbody>
               <tr>
-                <td>{scoreData}</td>
                 <td>1</td>
                 <td>A</td>
                 <td>100</td>
