@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './probmakingdone.css';
+import './probmakedone.css';
 import { useLocation, useHistory } from 'react-router-dom';
 import { httpClient } from '../helpers/httpClient';
 import { Problem } from '../types/models';
 import { Popover } from '@material-ui/core';
 import CopyToClipboard from 'react-copy-to-clipboard';
 
-interface Props {
-  name: string;
-}
-const ProbMakingDone = ({ name }: Props) => {
+const ProbMakeDone = () => {
   const location = useLocation<{ test: Problem[] }>();
   const { test } = location.state;
   const [id, setId] = useState<string>();
@@ -42,7 +39,7 @@ const ProbMakingDone = ({ name }: Props) => {
       {id ? (
         <article className="Desktop">
           <div className="Donetext">
-            2020학년도 {name} 영역 적성평가 출제 완료 하셨습니다.
+            2020학년도 영역 적성평가 출제 완료 하셨습니다.
             <br />내 링크를 통해 결과를 확인할 수 있습니다.
           </div>
           <div className="Mylink">내 링크: localhost:3000/{id}</div>
@@ -123,4 +120,4 @@ const ProbMakingDone = ({ name }: Props) => {
   );
 };
 
-export default ProbMakingDone;
+export default ProbMakeDone;

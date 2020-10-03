@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import UserInfo from './components/userinfo';
 import ProbMaking from './components/probmaking';
-import ProbMakingDone from './components/probmakingdone';
 import ProbReady from './components/probready';
 import Home from './components/Home';
 import ProbSolving from './components/probsolving';
@@ -9,6 +8,7 @@ import ProbSolveDone from './components/probsolvedone';
 import PageError from './components/pageerror';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { Problem } from './types/models';
+import ProbMakeDone from './components/probmakedone';
 
 const App = () => {
   const [name, setName] = useState('');
@@ -27,9 +27,6 @@ const App = () => {
         <Route exact path="/prob-making">
           <ProbMaking name={name} />
         </Route>
-        <Route exact path="/prob-making-done/">
-          <ProbMakingDone name={name} />
-        </Route>
         <Route exact path="/prob-solving">
           <ProbSolving name={name} test={test} functionData={setUserData} />
         </Route>
@@ -39,8 +36,11 @@ const App = () => {
         <Route exact path="/page-error">
           <PageError />
         </Route>
+        <Route exact path="/prob-make-done">
+          <ProbMakeDone />
+        </Route>
         <Route exact path="/:solveId?">
-          <Home onTest={setTest} onIsSolve={setIsSolve} getName={setName} isSolve={isSolve} />
+          <Home onTest={setTest} onIsSolve={setIsSolve} getName={setName} />
         </Route>
       </Switch>
     </Router>

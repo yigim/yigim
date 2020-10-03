@@ -9,10 +9,9 @@ type Props = {
   onTest: (test: Problem[]) => void;
   onIsSolve: (isSolve: boolean) => void;
   getName: (name: string) => void;
-  isSolve: boolean;
 };
 
-const Home = ({ onTest, onIsSolve, getName, isSolve }: Props) => {
+const Home = ({ onTest, onIsSolve, getName }: Props) => {
   const { solveId } = useParams<{ solveId: string }>();
   const history = useHistory();
   const [name, setName] = useState('');
