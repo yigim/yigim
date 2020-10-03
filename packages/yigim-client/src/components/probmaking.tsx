@@ -127,8 +127,6 @@ const ProbMaking = ({ name }: Props) => {
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              console.log(pickedNumber);
-              console.log(test);
               if (pickedNumber !== null) {
                 setLevel(null);
                 setQuestion(questions[questionIndex + 1]);
@@ -144,7 +142,19 @@ const ProbMaking = ({ name }: Props) => {
                 // console.log로 확인해보니 7문제를 제출했으면 6번 문제까지의 데이터만 저장돼서 이것도 수정이 필요할 것 같습니다.
                 if (test.length >= 9) {
                   //축적된 데이터(UserQnALists) 업로드하도록
-                  history.push('/prob-making-done', { test });
+                  httpClient
+                    .post<{ test: { id: string } }>(`/tests`, {
+                      test,
+                    })
+                    .then((response) => {
+                      localStorage.setItem('admin', 'true');
+                      history.push('/results', {
+                        id: response.data.test.id,
+                      });
+                    })
+                    .catch((error) => {
+                      console.log(error);
+                    });
                 }
               } else {
                 alert('nothing selected');
