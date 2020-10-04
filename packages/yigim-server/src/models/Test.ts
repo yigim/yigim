@@ -3,14 +3,16 @@ import { Document } from 'dynamoose/dist/Document';
 
 export interface ITest extends Document {
   id: string;
-  data: Record<string, unknown>[];
+  name: string;
+  problems: unknown[];
 }
 const schema = new Schema(
   {
     id: { type: String, hashKey: true },
-    data: { type: Array },
+    name: String,
+    problems: { type: Array },
   },
-  { saveUnknown: ['data.**'] },
+  { saveUnknown: ['problems.**'] },
 );
 
 export const TestModel = model<ITest>('test', schema);

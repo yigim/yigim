@@ -1,18 +1,25 @@
 import React, { useEffect } from 'react';
-import { NavLink, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './Home.css';
 import { httpClient } from '../helpers/httpClient';
-import { Problem } from '../types/models';
+import { Problem, Test } from '../types/models';
 import { useState } from 'react';
-import './Home.css';
 type Props = {
-  onTest: (test: Problem[]) => void;
+  onProblems: (problems: Problem[]) => void;
   onIsSolve: (isSolve: boolean) => void;
-  getName: (name: string) => void;
+  onPresenterName: (presenterName: string) => void;
+  onTestId: (testId: string) => void;
+  onName: (name: string) => void;
 };
 
-const Home = ({ onTest, onIsSolve, getName }: Props) => {
-  const { solveId } = useParams<{ solveId: string }>();
+const Home = ({
+  onProblems,
+  onIsSolve,
+  onPresenterName,
+  onTestId,
+  onName,
+}: Props) => {
+  const { testId } = useParams<{ testId: string }>();
   const history = useHistory();
   const [name, setName] = useState('');
   const [checked, setChecked] = useState(0);
@@ -40,20 +47,40 @@ const Home = ({ onTest, onIsSolve, getName }: Props) => {
 
   tod = +yyyy + m + d;
   useEffect(() => {
-    if (solveId) {
+    if (testId) {
+      onTestId(testId);
+      const resultId = localStorage.getItem(testId);
       httpClient
-        .get(`/tests/${solveId}`)
+        .get<{ test: Test }>(`/tests/${testId}`)
         .then((response) => {
-          onTest(response.data.test.data);
+          const { problems, name } = response.data.test;
+          if (resultId === 'presenter') {
+            history.push('/prob-make-done', {
+              problems,
+              testId,
+            });
+            return;
+          }
+          if (resultId) {
+            history.push('/prob-solve-done', {
+              problems,
+              myResultId: resultId,
+              testId,
+            });
+            return;
+          }
+          console.log('asadsda');
+          console.log(response.data);
+          onProblems(problems);
+          onPresenterName(name);
           onIsSolve(true);
         })
         .catch((error) => {
           console.error(error);
           history.push('/page-error');
         });
-      history.push('/user-info');
     }
-  }, [history, onIsSolve, onTest, solveId]);
+  }, [history, onIsSolve, onPresenterName, onProblems, onTestId, testId]);
 
   return (
     <div className="Home_Container">
@@ -72,14 +99,14 @@ const Home = ({ onTest, onIsSolve, getName }: Props) => {
             className="Problemmakestart"
             type="button"
           >
-            나만의 시험지 만들기
+            {testId ? '문제 풀기' : '나만의 시험지 만들기'}
           </button>
         ) : (
           <article>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                getName(name);
+                onName(name);
                 history.push('/prob-ready');
               }}
             >
@@ -117,7 +144,9 @@ const Home = ({ onTest, onIsSolve, getName }: Props) => {
               <input
                 type="submit"
                 className="button1"
-                value="나만의 문제 출제하러 가기! GO!"
+                value={
+                  testId ? '문제 풀기! GO!' : '나만의 문제 출제하러 가기! GO!'
+                }
               ></input>
             </form>
           </article>

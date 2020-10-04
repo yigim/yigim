@@ -8,15 +8,18 @@ import { badRequest, ok } from '../utils/generateResponses';
 if (STAGE === 'dev') dynamoose.aws.ddb.local();
 
 export const handler = middleware(async (event) => {
-  const { test: data } = event.bodyParameters as {
-    test: Record<string, unknown>[];
+  const { name, problems } = event.bodyParameters as {
+    name: string;
+    problems: unknown[];
   };
 
-  if (!data) return badRequest('Invalid body parameters', event.bodyParameters);
+  if (!problems || problems.length === 0)
+    return badRequest('Invalid body parameters', event.bodyParameters);
 
   const test = await TestModel.create({
-    id: `i${customAlphabet('0123456789abcdefg', 6)()}`,
-    data,
+    id: customAlphabet('0123456789abcdefg', 6)(),
+    name,
+    problems,
   });
 
   return ok('test', test);

@@ -1,7 +1,9 @@
 import { Question } from '../types/models';
 
-export const BACKEND_URL = 'http://localhost:9000/dev';
-// 'https://2y0mfq1cmc.execute-api.ap-northeast-2.amazonaws.com/prod';
+export const BACKEND_URL =
+  'https://2y0mfq1cmc.execute-api.ap-northeast-2.amazonaws.com/prod';
+
+export const FRONTEND_URL = 'https://yigim.geongun.me';
 
 export const DefaultQuestions = (name: string): Question[] => [
   {

@@ -99,3 +99,123 @@
   color: #000000;
   /* margin-top: px; */
 }
+
+.Inputname {
+  display: flex;
+  justify-content: center;
+}
+
+.Inputname label {
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4.5vmin;
+  float: left;
+}
+
+.Inputname span {
+  display: table-cell;
+  /* overflow: hidden; */
+  padding: 0 16px 0 20px;
+}
+
+.Inputname input::placeholder {
+  font-family: NanumMyeongjo;
+  font-size: 2.2vmin;
+  font-weight: 600;
+}
+
+.Inputname input {
+  border: 0.3vh solid #333333;
+  background: #f1ebe6;
+  text-align: center;
+  height: 4vh;
+  width: 25vw;
+  margin-left: 1em;
+  padding: 1;
+}
+
+.Inputstudentid {
+  display: flex;
+  justify-content: center;
+}
+
+.Inputstudentid label {
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4.5vmin;
+  float: left;
+}
+
+.Inputstudentid span {
+  display: table-cell;
+  /* overflow: ; */
+  padding: 0 16px 0 20px;
+}
+
+.Inputstudentid2 {
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-size: 3.5vmin;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  border: 0.3vh solid #333333;
+  background: #f1ebe6;
+  text-align: center;
+  height: 4vh;
+  width: 25vw;
+  margin-left: ;
+}
+.Inputgender {
+  display: flex;
+  justify-content: center;
+}
+
+.Inputgender label {
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 4.5vmin;
+  float: left;
+}
+
+.Inputgender span {
+  display: table-cell;
+  overflow: hidden;
+  padding: 0 16px 0 20px;
+}
+
+.Inputgender input {
+  border: 0.3vh solid #333333;
+  background: #f1ebe6;
+  text-align: center;
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 3vmin;
+  height: 4.5vh;
+  width: 13vw;
+  margin-left: 1em;
+  padding: 1;
+}
+.Inputgender input:hover {
+  background: gray;
+}
+
+.button1 {
+  border-radius: 0.5rem;
+  border: #d9d9d9;
+  background: #d9d9d9;
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 4vmin;
+  line-height: 150%;
+  /* identical to box height */
+
+  letter-spacing: 0.07em;
+  margin-bottom: 1.5em;
+  margin-top: 0.5em;
+  color: #000000;
+}

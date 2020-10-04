@@ -1,68 +1,59 @@
 import React, { useState } from 'react';
 import './probsolving.css';
 import { useHistory, useParams } from 'react-router-dom';
+import { chain } from 'lodash';
 import { getCircleNumber } from '../helpers/getCircleNumber';
-import { Problem } from '../types/models';
+import { Problem, Result } from '../types/models';
+import { httpClient } from '../helpers/httpClient';
 
 interface Props {
-  functionData: (userData: any[]) => void;
-  test: Problem[];
+  problems: Problem[];
+  presenterName: string;
   name: string;
+  testId: string;
 }
 const Osign = require('../images/Osign.png');
 const Xsign = require('../images/xsign.png');
-enum Result {
-  NotAnswered,
-  Right,
-  Wrong,
-}
-const ProbSolving = ({ functionData, test }: Props) => {
-  const history = useHistory();
-  const solveId = useParams();
-  const [probNumber, setProbNumber] = useState(0);
-  const [chosenNubmer, setChosenNumber] = useState(0);
-  const [scoreTotal, setScoreTotal] = useState(0);
-  const [scoreUser, setScoreUser] = useState(0);
-  const [result, setResult] = useState<Result>(Result.NotAnswered);
-  const [userName, setUserName] = useState('길동홍');
 
-  //정답이 맞는 함수
-  const pickRightAnswer = () => {
-    setResult(Result.Right);
-    setScoreTotal(scoreTotal + test[probNumber].score);
-    setScoreUser(scoreUser + test[probNumber].score);
-  };
-  //정답이 틀리는 함수
-  const pickWrongAnswer = () => {
-    setResult(Result.Wrong);
-    setScoreTotal(scoreTotal + test[probNumber].score);
-  };
-  console.log('hihihihihi');
-  console.log(test);
-  const problem = test[probNumber];
-  const question = probNumber + '. ' + problem.question;
-  //const getcirclenumber constants.ts로 이식하는 작업 해보기
+const ProbSolving = ({ problems, presenterName, name, testId }: Props) => {
+  const history = useHistory();
+  const [current, setCurrent] = useState<number>(0);
+  const [result, setResult] = useState<number[]>([]);
+  const [choose, setChoose] = useState<number | null>(null);
+
+  const problem = problems[current];
+
+  const scoreUser = chain(problems)
+    .filter((problem, index) => {
+      const choose = result[index];
+      return problem.examples[choose] === problem.answer;
+    })
+    .map((problem) => problem.score)
+    .sum()
+    .value();
+
+  const scoreTotal = chain(problems)
+    .map((problem) => problem.score)
+    .sum()
+    .value();
 
   const sign = (() => {
-    switch (result) {
-      case Result.Right: {
-        return (
-          <div className="Oani">
-            <img className="Osign" src={Osign} alt="osign" />
-          </div>
-        );
-      }
-      case Result.Wrong: {
-        return (
-          <div className="Xani">
-            <img className="Xsign" src={Xsign} alt="xsign" />
-          </div>
-        );
-      }
-      case Result.NotAnswered: {
-        return '';
-      }
+    // Not chosen
+    if (choose === null) return '';
+    // Right choose
+    if (problem.examples[choose] === problem.answer) {
+      return (
+        <div className="Oani">
+          <img className="Osign" src={Osign} alt="osign" />
+        </div>
+      );
     }
+    // Wrong choose
+    return (
+      <div className="Xani">
+        <img className="Xsign" src={Xsign} alt="xsign" />
+      </div>
+    );
   })();
 
   return (
@@ -73,29 +64,27 @@ const ProbSolving = ({ functionData, test }: Props) => {
             2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
           </h1>
           {/* 아랫줄 {name} */}
-          <h2 className="Problemtitle">재환김 영역</h2>
+          <h2 className="Problemtitle">{presenterName} 영역</h2>
           <p className="Period">제 1교시</p>
           <p className="Nametag">성명</p>
-          <p className="Name">{userName}</p>
+          <p className="Name">{name}</p>
         </div>
         {sign}
-        <div className="Problem">{question}</div>
+        <div className="Problem">
+          {current + 1}. {problem.question}
+        </div>
         <div className="Choice">
           <ol>
             {problem.examples.map((example, index) => (
               <div>
-                {result === Result.NotAnswered ? (
+                {choose === null ? (
                   <button
                     type="button"
                     className="Buttonselect"
                     id={String(index)}
                     onClick={(e) => {
-                      if (problem.answer === example) {
-                        pickRightAnswer();
-                      } else {
-                        pickWrongAnswer();
-                      }
-                      setChosenNumber(0);
+                      setChoose(index);
+                      setResult(result.concat(index));
                     }}
                   >
                     {getCircleNumber(index)} {example}
@@ -108,19 +97,35 @@ const ProbSolving = ({ functionData, test }: Props) => {
           </ol>
         </div>
         <form
-          onClick={(e) => {
+          onClick={async (e) => {
             e.preventDefault();
-            if (probNumber < test.length - 1) {
-              setProbNumber(probNumber + 1);
-              setResult(Result.NotAnswered);
+            if (current + 1 < problems.length) {
+              setCurrent(current + 1);
+              setChoose(null);
             } else {
-              e.preventDefault();
-              functionData([scoreUser, scoreTotal]);
-              history.push('/prob-solve-done/' + solveId, {});
+              const {
+                data: { result: myResult },
+              } = await httpClient.post<{ result: Result }>(
+                `/tests/${testId}/results`,
+                {
+                  name,
+                  data: result,
+                },
+              );
+              localStorage.setItem(myResult.testId, myResult.id);
+              history.push('/prob-solve-done', {
+                problems,
+                myResultId: myResult.id,
+                testId,
+              });
             }
           }}
         >
-          <input type="submit" value="다음 문제" className="NextButton"></input>
+          <input
+            type="submit"
+            className="NextButton"
+            value={current + 1 < problems.length ? '다음문제' : '제출하기'}
+          ></input>
         </form>
         <div className="grade">
           현재 점수: {scoreUser}/{scoreTotal}

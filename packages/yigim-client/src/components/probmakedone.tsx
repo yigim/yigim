@@ -1,40 +1,61 @@
 import React, { useEffect, useState } from 'react';
 import './probmakedone.css';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { httpClient } from '../helpers/httpClient';
 import { Popover } from '@material-ui/core';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { Problem, Result } from '../types/models';
+import { chain } from 'lodash';
+import { FRONTEND_URL } from '../constants/constants';
 
 const ProbMakeDone = () => {
-  const location = useLocation<{ id: string }>();
-  const { id } = location.state;
-  const [scoreData, setScoreData] = useState<Number>();
+  const {
+    state: { problems, testId },
+  } = useLocation<{ problems: Problem[]; testId: string }>();
+
+  const [results, setResults] = useState<Result[]>([]);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null,
   );
+
+  const scoreUsers = chain(results)
+    .map<{ id: string; name: string; score: number }>((result) => {
+      const { id, name, data } = result;
+      const score = chain(problems)
+        .filter((problem, index) => {
+          const choose = data[index];
+          return problem.examples[choose] === problem.answer;
+        })
+        .map((problem) => problem.score)
+        .sum()
+        .value();
+      return { id, name, score };
+    })
+    .value();
+
   useEffect(() => {
     httpClient
-      .get(`/tests/${id}/results`)
-      .then((response: any) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
+      .get<{ results: Result[] }>(`/tests/${testId}/results`)
+      .then(({ data: { results } }) => {
+        setResults(results);
       });
-  });
+  }, [testId]);
+
   return (
     <div>
       <article className="Desktop">
         <div className="Donetext">
           2020학년도 영역 적성평가 출제 완료 하셨습니다.
         </div>
-        <div className="Mylink">시험 응시 링크: localhost:3000/{id}</div>
+        <div className="Mylink">
+          시험 응시 링크: {FRONTEND_URL}/{testId}
+        </div>
         <div className="Probdeliver">문제 배포</div>
         <button className="Facebook">페이스북</button>
         <button className="Kakaotalk">카카오톡</button>
         <button className="Instagram">인스타그램</button>
         <div>
-          <CopyToClipboard text={`localhost:3000/${id}`}>
+          <CopyToClipboard text={`${FRONTEND_URL}/${testId}`}>
             <button
               className="URLcopy"
               onClick={(event) => {
@@ -52,8 +73,6 @@ const ProbMakeDone = () => {
             링크가 클립보드에 복사되었습니다.
           </Popover>
         </div>
-        <div className="Border"></div>
-        <div className="Scoretitle">우수 응시자 성적 공개</div>
         <table className="Scoretable">
           <thead>
             <tr>
@@ -67,37 +86,20 @@ const ProbMakeDone = () => {
                 <span>점수</span>
               </th>
             </tr>
-            <td>{scoreData}</td>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>A</td>
-              <td>100</td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>B</td>
-              <td>95</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>C</td>
-              <td>90</td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>D</td>
-              <td>85</td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>E</td>
-              <td>80</td>
-            </tr>
+            {chain(scoreUsers)
+              .sort((a, b) => b.score - a.score)
+              .map(({ id, name, score }, index) => (
+                <tr>
+                  <td>{index + 1}</td>
+                  <td>{name}</td>
+                  <td>{score}</td>
+                </tr>
+              ))
+              .value()}
           </tbody>
         </table>
-        <div className="Scorecheck">전체 응시자 성적 확인하기</div>
       </article>
     </div>
   );

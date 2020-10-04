@@ -13,9 +13,9 @@ const ProbReady = ({ name, isSolve }: Props) => {
       onSubmit={(e) => {
         e.preventDefault();
         if (isSolve) {
-          history.push('/prob-solving/');
+          history.push('/prob-solving');
         } else {
-          history.push('/prob-making/');
+          history.push('/prob-making');
         }
       }}
     >

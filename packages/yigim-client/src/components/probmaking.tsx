@@ -3,7 +3,8 @@ import './probmaking.css';
 import { useHistory } from 'react-router-dom';
 import { DefaultQuestions } from '../constants/constants';
 import { getCircleNumber } from '../helpers/getCircleNumber';
-import { Problem } from '../types/models';
+import { Problem, Result, Test } from '../types/models';
+import { httpClient } from '../helpers/httpClient';
 
 //typescript image import 방식
 const Checksign = require('../images/checksign.png');
@@ -31,7 +32,7 @@ const ProbMaking = ({ name }: Props) => {
   const [mention, setMention] = useState('수정하기');
   const questions = DefaultQuestions(name);
   //문제 만드는 사람이 만드는 데이터
-  const [test, setTest] = useState<Problem[]>([]);
+  const [problems, setProblems] = useState<Problem[]>([]);
   const [pickedNumber, setPickedNumber] = useState<number | null>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [question, setQuestion] = useState(questions[0]);
@@ -125,36 +126,33 @@ const ProbMaking = ({ name }: Props) => {
       <div className="Problem_Bottom_Container">
         <div className="Bottom1">
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
               if (pickedNumber !== null) {
-                setLevel(null);
-                setQuestion(questions[questionIndex + 1]);
-                setQuestionIndex((questionIndex + 1) % questions.length);
-                setPickedNumber(null);
-                setTest(
-                  test.concat({
-                    ...question,
-                    answer: question.examples[pickedNumber],
-                  }),
-                );
-                // 왜인지는 모르겠지만 아래 값이 10이면 11번 문제까지 만들게 돼서 9로 바꿔놨습니다.
-                // console.log로 확인해보니 7문제를 제출했으면 6번 문제까지의 데이터만 저장돼서 이것도 수정이 필요할 것 같습니다.
-                if (test.length >= 9) {
-                  //축적된 데이터(UserQnALists) 업로드하도록
-                  httpClient
-                    .post<{ test: { id: string } }>(`/tests`, {
-                      test,
-                    })
-                    .then((response) => {
-                      localStorage.setItem('admin', 'true');
-                      history.push('/results', {
-                        id: response.data.test.id,
-                      });
-                    })
-                    .catch((error) => {
-                      console.log(error);
-                    });
+                const newProblems = problems.concat({
+                  ...question,
+                  answer: question.examples[pickedNumber],
+                });
+                if (newProblems.length >= 10) {
+                  const {
+                    data: { test },
+                  } = await httpClient.post<{ test: Test }>(`/tests`, {
+                    name,
+                    problems: newProblems,
+                  });
+                  console.log('hihihi');
+                  console.log(test);
+                  localStorage.setItem(test.id, 'presenter');
+                  history.push('/prob-make-done', {
+                    testId: test.id,
+                    problems: newProblems,
+                  });
+                } else {
+                  setLevel(null);
+                  setQuestion(questions[questionIndex + 1]);
+                  setQuestionIndex((questionIndex + 1) % questions.length);
+                  setPickedNumber(null);
+                  setProblems(newProblems);
                 }
               } else {
                 alert('nothing selected');
@@ -162,7 +160,7 @@ const ProbMaking = ({ name }: Props) => {
             }}
           >
             <div className="Problem">
-              {test.length + 1}.
+              {problems.length + 1}.
               {mode === Mode.basic ? (
                 question.question
               ) : (
@@ -253,14 +251,14 @@ const ProbMaking = ({ name }: Props) => {
                   className="Submit"
                   id="next"
                   type="submit"
-                  value={test.length === 9 ? '제출하기' : '다음문제'}
+                  value={problems.length === 9 ? '제출하기' : '다음문제'}
                 ></input>
               ) : (
                 ''
               )}
             </div>
           </form>
-          <div className="Pagenumber">-{test.length + 1}-</div>
+          <div className="Pagenumber">-{problems.length + 1}-</div>
         </div>
         {mode === Mode.basic ? (
           <input

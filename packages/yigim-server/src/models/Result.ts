@@ -2,14 +2,16 @@ import { Schema, model } from 'dynamoose';
 import { Document } from 'dynamoose/dist/Document';
 
 export interface IResult extends Document {
-  id: string;
   testId: string;
+  id: string;
+  name: string;
   data: Record<string, unknown>[];
 }
 const schema = new Schema(
   {
     testId: String,
     id: { type: String, rangeKey: true },
+    name: String,
     data: { type: Array },
   },
   { saveUnknown: ['data.**'] },
