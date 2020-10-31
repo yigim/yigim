@@ -164,12 +164,13 @@ const ProbMaking = ({ name }: Props) => {
               {mode === Mode.basic ? (
                 question.question
               ) : (
-                <input
-                  className="Modifyproblem"
-                  type="text"
-                  value={question.question}
-                  onChange={(e) => handleChangeQuestion(e.target.value)}
-                ></input>
+                // <input
+                //   className="Modifyproblem"
+                //   type="text"
+                //   value={question.question}
+                //   onChange={(e) => handleChangeQuestion(e.target.value)}
+                // ></input>
+                question.question
               )}
             </div>
             <div className="Choice">
