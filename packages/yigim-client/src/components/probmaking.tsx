@@ -3,8 +3,7 @@ import './probmaking.css';
 import { useHistory } from 'react-router-dom';
 import { DefaultQuestions } from '../constants/constants';
 import { getCircleNumber } from '../helpers/getCircleNumber';
-import { Problem, Result, Test } from '../types/models';
-import { httpClient } from '../helpers/httpClient';
+import { Problem } from '../types/models';
 
 //typescript image import 방식
 const Checksign = require('../images/checksign.png');
@@ -22,6 +21,8 @@ enum Mode {
   basic = 'basic',
   modify = 'modify',
 }
+
+const TOTAL_PROBLEM_COUNT = 2;
 
 const ProbMaking = ({ name }: Props) => {
   const history = useHistory();
@@ -133,18 +134,9 @@ const ProbMaking = ({ name }: Props) => {
                   ...question,
                   answer: question.examples[pickedNumber],
                 });
-                if (newProblems.length >= 10) {
-                  const {
-                    data: { test },
-                  } = await httpClient.post<{ test: Test }>(`/tests`, {
-                    name,
-                    problems: newProblems,
-                  });
-                  console.log('hihihi');
-                  console.log(test);
-                  localStorage.setItem(test.id, 'presenter');
+                if (newProblems.length >= TOTAL_PROBLEM_COUNT) {
                   history.push('/prob-make-done', {
-                    testId: test.id,
+                    name,
                     problems: newProblems,
                   });
                 } else {

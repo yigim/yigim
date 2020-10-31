@@ -4,15 +4,16 @@ import { useLocation } from 'react-router-dom';
 import { httpClient } from '../helpers/httpClient';
 import { Popover } from '@material-ui/core';
 import CopyToClipboard from 'react-copy-to-clipboard';
-import { Problem, Result } from '../types/models';
+import { Problem, Result, Test } from '../types/models';
 import { chain } from 'lodash';
 import { FRONTEND_URL } from '../constants/constants';
 
 const ProbMakeDone = () => {
   const {
-    state: { problems, testId },
-  } = useLocation<{ problems: Problem[]; testId: string }>();
+    state: { name, problems },
+  } = useLocation<{ name: string; problems: Problem[] }>();
 
+  const [test, setTest] = useState<Test | null>(null);
   const [results, setResults] = useState<Result[]>([]);
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null,
@@ -35,12 +36,25 @@ const ProbMakeDone = () => {
 
   useEffect(() => {
     httpClient
-      .get<{ results: Result[] }>(`/tests/${testId}/results`)
-      .then(({ data: { results } }) => {
-        setResults(results);
+      .post<{ test: Test }>(`/tests`, {
+        name,
+        problems,
+      })
+      .then(({ data: { test } }) => {
+        setTest(test);
+        localStorage.setItem(test.id, 'presenter');
       });
-  }, [testId]);
+  }, [name, problems]);
+  useEffect(() => {
+    if (test)
+      httpClient
+        .get<{ results: Result[] }>(`/tests/${test.id}/results`)
+        .then(({ data: { results } }) => {
+          setResults(results);
+        });
+  }, [test]);
 
+  if (!test || !results) return <div></div>;
   return (
     <div>
       <article className="Desktop">
@@ -48,14 +62,14 @@ const ProbMakeDone = () => {
           2020학년도 영역 적성평가 출제 완료 하셨습니다.
         </div>
         <div className="Mylink">
-          시험 응시 링크: {FRONTEND_URL}/{testId}
+          시험 응시 링크: {FRONTEND_URL}/{test.id}
         </div>
         <div className="Probdeliver">문제 배포</div>
         <button className="Facebook">페이스북</button>
         <button className="Kakaotalk">카카오톡</button>
         <button className="Instagram">인스타그램</button>
         <div>
-          <CopyToClipboard text={`${FRONTEND_URL}/${testId}`}>
+          <CopyToClipboard text={`${FRONTEND_URL}/${test.id}`}>
             <button
               className="URLcopy"
               onClick={(event) => {
