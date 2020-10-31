@@ -32,6 +32,7 @@ const ProbSolveDone = () => {
   console.log(myResultId);
   console.log(results);
   const myResult = results.find((result) => result.id === myResultId);
+    
 
   useEffect(() => {
     httpClient
@@ -52,8 +53,13 @@ const ProbSolveDone = () => {
     <div className="Desktop">
       성명: {myResult?.name}
       <br />
-      점수: {scoreTotal}
-      <br />
+      점수: {chain(scoreUsers)
+            .sort((a, b) => b.score - a.score)
+            .map(({ id, name, score }, index) => (
+              <div>{Math.round(score/scoreTotal*100)}</div>
+            ))
+            .value()}
+            <br />
       순위: <br />
       <table className="Scoretable">
         <thead>
@@ -76,7 +82,7 @@ const ProbSolveDone = () => {
               <tr>
                 <td>{index + 1}</td>
                 <td>{name}</td>
-                <td>{score}</td>
+                <td>{Math.round(score/scoreTotal*100)}</td>
               </tr>
             ))
             .value()}
