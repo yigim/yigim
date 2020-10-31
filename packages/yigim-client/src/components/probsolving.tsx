@@ -33,10 +33,10 @@ const ProbSolving = ({ problems, presenterName, name, testId }: Props) => {
     .value();
 
   const scoreTotal = chain(problems)
-  .filter((problem, index) => {
-    const choose = result[index];
-    return problem.examples[choose] != null;
-  })
+    .filter((problem, index) => {
+      const choose = result[index];
+      return problem.examples[choose] != null;
+    })
     .map((problem) => problem.score)
     .sum()
     .value();
@@ -61,80 +61,78 @@ const ProbSolving = ({ problems, presenterName, name, testId }: Props) => {
   })();
 
   return (
-    <div>
-      <article className="Desktop">
-        <div className="Problemheader">
-          <h1 className="Problemtype_">
-            2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
-          </h1>
-          {/* 아랫줄 {name} */}
-          <h2 className="Problemtitle">{presenterName} 영역</h2>
-          <p className="Period">제 1교시</p>
-          <p className="Nametag">성명</p>
-          <p className="Name">{name}</p>
+    <div className="Desktop">
+      <div className="Problemheader">
+        <div className="Problemtype_">
+          2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
         </div>
-        {sign}
-        <div className="Problem">
-          {current + 1}. {problem.question}
-        </div>
-        <div className="Choice">
-          <ol>
-            {problem.examples.map((example, index) => (
-              <div>
-                {choose === null ? (
-                  <button
-                    type="button"
-                    className="Buttonselect"
-                    id={String(index)}
-                    onClick={(e) => {
-                      setChoose(index);
-                      setResult(result.concat(index));
-                    }}
-                  >
-                    {getCircleNumber(index)} {example}
-                  </button>
-                ) : (
-                  `${getCircleNumber(index)} ${example}`
-                )}
-              </div>
-            ))}
-          </ol>
-        </div>
-        <form
-          onClick={async (e) => {
-            e.preventDefault();
-            if (current + 1 < problems.length) {
-              setCurrent(current + 1);
-              setChoose(null);
-            } else {
-              const {
-                data: { result: myResult },
-              } = await httpClient.post<{ result: Result }>(
-                `/tests/${testId}/results`,
-                {
-                  name,
-                  data: result,
-                },
-              );
-              localStorage.setItem(myResult.testId, myResult.id);
-              history.push('/prob-solve-done', {
-                problems,
-                myResultId: myResult.id,
-                testId,
-              });
-            }
-          }}
-        >
-          <input
-            type="submit"
-            className="NextButton"
-            value={current + 1 < problems.length ? '다음문제' : '제출하기'}
-          ></input>
-        </form>
-        <div className="grade">
-          현재 점수: {scoreTotal===0 ? 0 : Math.round(scoreUser*100/scoreTotal)}/100
-        </div>
-      </article>
+        {/* 아랫줄 {name} */}
+        <div className="Problemtitle">{presenterName} 영역</div>
+        <div className="Period">제 1교시</div>
+        <div className="Nametag">성명</div>
+        <div className="Name">{name}</div>
+      </div>
+      {sign}
+      <div className="Problem">
+        {current + 1}. {problem.question}
+      </div>
+      <div className="Choice">
+        {problem.examples.map((example, index) => (
+          <div>
+            {choose === null ? (
+              <button
+                type="button"
+                className="Buttonselect"
+                id={String(index)}
+                onClick={(e) => {
+                  setChoose(index);
+                  setResult(result.concat(index));
+                }}
+              >
+                {getCircleNumber(index)} {example}
+              </button>
+            ) : (
+              `${getCircleNumber(index)} ${example}`
+            )}
+          </div>
+        ))}
+      </div>
+      <form
+        onClick={async (e) => {
+          e.preventDefault();
+          if (current + 1 < problems.length) {
+            setCurrent(current + 1);
+            setChoose(null);
+          } else {
+            const {
+              data: { result: myResult },
+            } = await httpClient.post<{ result: Result }>(
+              `/tests/${testId}/results`,
+              {
+                name,
+                data: result,
+              },
+            );
+            localStorage.setItem(myResult.testId, myResult.id);
+            history.push('/prob-solve-done', {
+              problems,
+              myResultId: myResult.id,
+              testId,
+            });
+          }
+        }}
+      >
+        <input
+          type="submit"
+          className="NextButton"
+          value={current + 1 < problems.length ? '다음문제' : '제출하기'}
+        ></input>
+      </form>
+      <div className="grade">
+        현재 점수:{' '}
+        {scoreTotal === 0 ? 0 : Math.round((scoreUser * 100) / scoreTotal)}
+        /100
+      </div>
     </div>
   );
 };
