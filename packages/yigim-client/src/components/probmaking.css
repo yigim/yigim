@@ -28,17 +28,17 @@
   font-style: normal;
   font-weight: normal;
 }
-.Home_Container {
+.Home_Container_Problem {
   background: #f1ebe6;
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   margin: 0px auto;
-  max-height: 100%;
   height: 100vh;
+  max-height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-evenly;
-  max-width: 1300px;
+  justify-content: flex-start;
 }
 
 .Problem_Header_Container {
@@ -48,12 +48,14 @@
   align-items: center;
   flex-direction: column;
   border-bottom: black 0.5vmin solid;
+  margin-top: 3vh;
 }
 .Problem_Bottom_Container {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   flex-direction: row;
+  margin-top: 5vh;
 }
 .Bottom1 {
   display: flex;
@@ -150,6 +152,13 @@
   font-size: 3vmin;
   text-align: center;
 }
+.PseudobuttonSelected {
+  background: white;
+  font-weight: bold;
+}
+.PseudobuttonUnselected:hover {
+  background: gray;
+}
 .Pseudobutton {
   font-family: NanumMyeongjo;
   background: none;
@@ -162,7 +171,6 @@
 .Pseudobutton:hover {
   opacity: 0.5;
 }
-
 .Buttonselect {
   display: inline-flex;
   justify-content: flex-end;
@@ -173,9 +181,11 @@
   font-size: 3vmin;
   line-height: 200%;
   border: none;
+  outline: none;
 }
 .Buttonselect:hover {
   color: gray;
+  border: none;
 }
 .Checkani {
   overflow: hidden;
@@ -184,6 +194,7 @@
   animation-play-state: running;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+  border: none;
 }
 .Checkdiv {
   width: 0;
@@ -219,13 +230,24 @@
 }
 
 .Modifychoice {
+  /*font-family: NanumMyeongjo;
+  font-size: 5vmin;*/
+  display: inline-flex;
+  justify-content: flex-end;
+  background-color: #f8f4f0;
   font-family: NanumMyeongjo;
-  font-size: 5vmin;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3vmin;
+  line-height: 200%;
 }
 
 .Modifyproblem {
-  font-family: HY태고딕;
-  font-size: 8vmin;
+  /*font-family: HY태고딕;
+  font-size: 8vmin;*/
+  font-family: NanumMyeongjo;
+  font-size: 4vmin;
+  line-height: 150%;
 }
 
 .Modify {
@@ -239,7 +261,15 @@
 .Modify:hover {
   opacity: 0.5;
 }
-
+.CircleNumber {
+  display: inline-flex;
+  justify-content: flex-end;
+  font-family: NanumMyeongjo;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 3vmin;
+  line-height: 200%;
+}
 .Submit {
   border-radius: 2vmin;
   background: #d9d9d9;

@@ -28,7 +28,7 @@ const ProbMaking = ({ name }: Props) => {
   const [scoreTotal, setScoreTotal] = useState(0);
   const [scoreUser, setScoreUser] = useState(0);
   const [mode, setMode] = useState(Mode.basic);
-  const [level, setLevel] = useState<Level | null>(null);
+  const [level, setLevel] = useState<Level | null>(Level.mid);
   const [mention, setMention] = useState('수정하기');
   const questions = DefaultQuestions(name);
   //문제 만드는 사람이 만드는 데이터
@@ -111,7 +111,7 @@ const ProbMaking = ({ name }: Props) => {
     </div>
   );
   return (
-    <div className="Home_Container">
+    <div className="Home_Container_Problem">
       <div className="Problem_Header_Container">
         <div className="Sub_title_header">
           2020학년도 신개념 친구 적성평가 내 친구는 몇점짜리 친구일까?
@@ -161,17 +161,15 @@ const ProbMaking = ({ name }: Props) => {
           >
             <div className="Problem">
               {problems.length + 1}.
-              {mode === Mode.basic ? (
-                question.question
-              ) : (
-                // <input
-                //   className="Modifyproblem"
-                //   type="text"
-                //   value={question.question}
-                //   onChange={(e) => handleChangeQuestion(e.target.value)}
-                // ></input>
-                question.question
-              )}
+              {mode === Mode.basic
+                ? question.question
+                : // <input
+                  //   className="Modifyproblem"
+                  //   type="text"
+                  //   value={question.question}
+                  //   onChange={(e) => handleChangeQuestion(e.target.value)}
+                  // ></input>
+                  question.question}
             </div>
             <div className="Choice">
               {problevel}
@@ -216,7 +214,9 @@ const ProbMaking = ({ name }: Props) => {
                   ))
                 : question.examples.map((value, index) => (
                     <div>
-                      {getCircleNumber(index)}
+                      <div className="CircleNumber">
+                        {getCircleNumber(index)}
+                      </div>
                       <input
                         className="Modifychoice"
                         type="text"
