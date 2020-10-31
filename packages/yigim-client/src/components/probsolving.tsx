@@ -33,6 +33,10 @@ const ProbSolving = ({ problems, presenterName, name, testId }: Props) => {
     .value();
 
   const scoreTotal = chain(problems)
+  .filter((problem, index) => {
+    const choose = result[index];
+    return problem.examples[choose] != null;
+  })
     .map((problem) => problem.score)
     .sum()
     .value();
@@ -128,7 +132,7 @@ const ProbSolving = ({ problems, presenterName, name, testId }: Props) => {
           ></input>
         </form>
         <div className="grade">
-          현재 점수: {scoreUser}/{scoreTotal}
+          현재 점수: {scoreTotal===0 ? 0 : Math.round(scoreUser*100/scoreTotal)}/100
         </div>
       </article>
     </div>
